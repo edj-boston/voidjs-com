@@ -1,0 +1,51 @@
+/* Fonts */
+@font-face {
+	font-family: 'SourceCodePro';
+	src: url('/fonts/SourceCodePro.eot');
+	src:
+		url('/fonts/SourceCodePro.eot?#iefix') format('embedded-opentype'),
+		url('/fonts/SourceCodePro.woff') format('woff'),
+		url('/fonts/SourceCodePro.ttf') format('truetype');
+}
+
+@font-face {
+  font-family:'Gotham-Light';
+  src:url('/fonts/Gotham-Light.eot');
+  src:
+    url('/fonts/Gotham-Light.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/Gotham-Light.woff') format('woff'),
+    url('/fonts/Gotham-Light.ttf') format('truetype');
+}
+
+@font-face {
+	font-family:'Open-Sans';
+	src: url('/fonts/Open-Sans.eot');
+	src:
+		url('/fonts/Open-Sans.eot?#iefix') format('embedded-opentype'),
+		url('/fonts/Open-Sans.woff') format('woff'),
+		url('/fonts/Open-Sans.ttf') format('truetype');
+}
+
+
+/* Base styles */
+* { font-family:'Open-Sans'; font-size:16px; }
+html, body { margin:0; padding:0; background:#eee; }
+pre, code { font-family:'SourceCodePro'; }
+a { color:#660099; }
+a:hover { color:#6600cc; }
+
+/* Github ribbon */
+#github-ribbon { position:absolute; top:0; right:0; border:0; }
+
+/* Header */
+#banner { background:#6600cc; height:10em; }
+h1 { font-family:'Gotham-Light'; font-size:4em; font-weight:normal; text-align:right; color:#eee; margin:0 10px; padding:0; display:block; position:absolute; bottom:0; right:0; }
+h1 span { color:#330066; font-size:1em; }
+
+/* Main */
+#main { margin-top:1em; background:#fff; padding-top:3em; padding-bottom:3em; }
+h2 { margin-top:1.5em; }
+
+/* Footer */
+footer { font-size:0.75em; margin:3em; color:#333; }
+footer ul { text-align:center; }
