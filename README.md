@@ -1,4 +1,4 @@
-voidjs-com
+voidjs.com
 ==========
 
-Site of Void NodeJS module
+The site of the [Void](https://github.com/edj-boston/void) NodeJS [module](https://npmjs.org/package/void)
