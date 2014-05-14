@@ -39,12 +39,16 @@ a:hover { color:#6600cc; }
 #github-ribbon { position:absolute; top:0; right:0; border:0; }
 
 /* Header */
+header { background:#6600cc; }
 #banner { background:#6600cc; height:10em; }
 h1 { font-family:'Gotham-Light'; font-size:4em; font-weight:normal; text-align:right; color:#eee; margin:0 10px; padding:0; display:block; position:absolute; bottom:0; right:0; }
 h1 span { color:#330066; font-size:1em; }
 
+/* Buttons */
+#buttons { text-align:center; margin:0; padding:10px 0 3px; }
+
 /* Main */
-#main { margin-top:1em; background:#fff; padding-top:3em; padding-bottom:3em; }
+#main { background:#fff; padding-top:2em; padding-bottom:3em; }
 h2 { margin-top:1.5em; }
 
 /* Footer */
