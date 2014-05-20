@@ -29,28 +29,45 @@
 
 /* Base styles */
 * { font-family:'Open-Sans'; font-size:16px; }
-html, body { margin:0; padding:0; background:#eee; }
+html, body { margin:0; padding:0; background:#fff; }
 pre, code { font-family:'SourceCodePro'; }
 code { background-color:#ccccff; color:#333366; }
 a { color:#660099; }
 a:hover { color:#6600cc; }
 
-/* Github ribbon */
-#github-ribbon { position:absolute; top:0; right:0; border:0; }
+/* Github buttons */
+#bar { background:#eee; }
+
+/* Utility nav*/
+#utility a { color:#ccc; }
+#utility .list-inline>li { margin-top:0.5em; }
 
 /* Header */
 header { background:#6600cc; }
-#banner { background:#6600cc; height:10em; }
-h1 { font-family:'Gotham-Light'; font-size:4em; font-weight:normal; text-align:right; color:#eee; margin:0 10px; padding:0; display:block; position:absolute; bottom:0; right:0; }
+#banner { background:#6600cc; height:12em; }
+h1 { font-family:'Gotham-Light'; font-size:4em; font-weight:normal; text-align:right; color:#eee; margin:0; padding:0.2em; display:block; position:absolute; bottom:0; right:0; }
 h1 span { color:#330066; font-size:1em; }
 
 /* Buttons */
 #buttons { text-align:center; margin:0; padding:10px 0 3px; }
 
+/* Leftnav */
+.affix { top:3em; }
+.affix-top { margin-top:1.5em; }
+.affix-bottom { margin-top:3em; }
+.nav-pills>li>a { background:none; color:#660099; }
+.nav-pills>li>a:hover,
+.nav-pills>li>a:focus { background:none; text-decoration:underline; }
+.nav-pills>li.active>a,
+.nav-pills>li.active>a:hover,
+.nav-pills>li.active>a:focus { background:none; color:#660099; font-weight:bold; }
+.nav-pills>li.active>a:before { font-family:FontAwesome; content:'\f054'; font-size:0.8em; position:absolute; line-height:2em; left:-0.5em; }
+
 /* Main */
 #main { background:#fff; padding-top:2em; padding-bottom:3em; }
-h2 { margin-top:1.5em; }
+h2 { margin:2em 0 1em; padding-bottom:0.5em; border-bottom:1px solid #eee; }
+#buttons.list-inline>li { padding-bottom:5px; }
 
 /* Footer */
-footer { font-size:0.75em; margin:3em; color:#333; }
+footer { font-size:0.75em; margin:6em 3em 3em 3em; color:#333; }
 footer ul { text-align:center; }
