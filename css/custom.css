@@ -33,7 +33,7 @@ html, body { margin:0; padding:0; background:#fff; }
 pre, code { font-family:'SourceCodePro'; }
 code { background-color:#ccccff; color:#333366; }
 a { color:#660099; }
-a:hover { color:#6600cc; }
+a:hover { color:#660099; }
 
 /* Github buttons */
 #bar { background:#eee; }
@@ -43,10 +43,14 @@ a:hover { color:#6600cc; }
 #utility .list-inline>li { margin-top:0.5em; }
 
 /* Header */
-header { background:#6600cc; }
-#banner { background:#6600cc; height:12em; }
+header { background:#4f3b5b;
+	background:-webkit-radial-gradient(ellipse at center,#4f3b5b 0,#231733 100%);
+	background:-moz-radial-gradient(ellipse at center,#4f3b5b 0,#231733 100%);
+	background:-ms-radial-gradient(ellipse at center,#4f3b5b 0,#231733 100%);
+	background:radial-gradient(ellipse at center,#4f3b5b 0,#231733 100%); }
+#banner { height:12em; }
 h1 { font-family:'Gotham-Light'; font-size:4em; font-weight:normal; text-align:right; color:#eee; margin:0; padding:0.2em; display:block; position:absolute; bottom:0; right:0; }
-h1 span { color:#330066; font-size:1em; }
+h1 span { color:#231733; font-size:1em; }
 
 /* Buttons */
 #buttons { text-align:center; margin:0; padding:10px 0 3px; }
