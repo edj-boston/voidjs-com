@@ -54,6 +54,7 @@ h1 span { color:#231733; font-size:1em; }
 
 /* Buttons */
 #buttons { text-align:center; margin:0; padding:10px 0 3px; }
+#bar { box-shadow:0 1px 5px #ccc; }
 
 /* Leftnav */
 .affix { top:3em; }
@@ -68,7 +69,7 @@ h1 span { color:#231733; font-size:1em; }
 .nav-pills>li.active>a:before { font-family:FontAwesome; content:'\f054'; font-size:0.8em; position:absolute; line-height:2em; left:-0.5em; }
 
 /* Main */
-#main { background:#fff; padding-top:2em; padding-bottom:3em; }
+#main { padding-top:2em; padding-bottom:3em; }
 h2 { margin:2em 0 1em; padding-bottom:0.5em; border-bottom:1px solid #eee; }
 #buttons.list-inline>li { padding-bottom:5px; }
 
