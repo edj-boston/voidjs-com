@@ -38,10 +38,6 @@ a:hover { color:#660099; }
 /* Github buttons */
 #bar { background:#eee; }
 
-/* Utility nav*/
-#utility a { color:#ccc; }
-#utility .list-inline>li { margin-top:0.5em; }
-
 /* Header */
 header { background:#4f3b5b;
 	background:-webkit-radial-gradient(ellipse at center,#4f3b5b 0,#231733 100%);
