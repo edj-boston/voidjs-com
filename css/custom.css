@@ -66,7 +66,7 @@ h1 span { color:#231733; font-size:1em; }
 
 /* Main */
 #main { padding-top:2em; padding-bottom:3em; }
-h2 { margin:2em 0 1em; padding-bottom:0.5em; border-bottom:1px solid #eee; }
+h2 { margin:2em 0 0.5em; padding-bottom:0.5em; border-bottom:1px solid #eee; }
 #buttons.list-inline>li { padding-bottom:5px; }
 
 /* Footer */
