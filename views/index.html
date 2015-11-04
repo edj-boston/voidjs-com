@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>VoidJS</title>
+
+		<link href="/css/bootstrap.min.css?{{timestamp}}" rel="stylesheet">
+		<link href="/css/custom.css?{{timestamp}}" rel="stylesheet">
+		<link href="/css/font-awesome.min.css?{{timestamp}}" rel="stylesheet">
+		<link href="/favicon.ico" rel="shortcut icon">
+	</head>
+	<body data-spy="scroll" data-target=".navbar-example">
+
+		<header>
+			<div class="container">
+				<div class="row">
+					<div id="banner" class="col-md-offset-1 col-md-10">
+						<h1>Void<span>JS</span></h1>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<section id="bar">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-offset-1 col-md-10">
+						<ul id="buttons" class="list-inline">
+							<li><a href="https://twitter.com/share" class="twitter-share-button">Tweet</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></li>
+							<li class="hidden-xs"><a href="https://twitter.com/edjboston" class="twitter-follow-button" data-show-count="true">Follow @edjboston</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></li>
+							<li><iframe src="/inc/github-btn.html?user=edj-boston&amp;repo=void&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe></li>
+							<li class="hidden-xs"><iframe src="/inc/github-btn.html?user=edj-boston&amp;repo=void&amp;type=fork&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe></li>
+							<li class="hidden-xs"><iframe src="/inc/github-btn.html?user=edj-boston&amp;type=follow&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<main class="container">
+			<div class="row">
+				<div class="col-md-offset-1 col-md-2 hidden-xs hidden-sm">
+					<div class="navbar-example" data-spy="affix" data-offset-top="255">
+						<ul class="nav nav-pills nav-stacked">
+							<li><a href="#installation">Installation</a></li>
+							<li><a href="#usage">Usage</a></li>
+							<li><a href="#arguments">Arguments</a></li>
+							<li><a href="#properties">Properties</a></li>
+							<li><a href="#example">Example</a></li>
+							<li><a href="#tests">Tests</a></li>
+							<li><a href="#notes">Notes</a></li>
+							<li><a href="#roadmap">Roadmap</a></li>
+						</ul>
+					</div>
+				</div>
+				<div id="main" class="col-md-8">
+					{{{readme}}}
+				</div>
+			</div>
+		</main>
+
+		<footer class="container">
+			<div class="row">
+				<div class="col-md-offset-2 col-md-8">
+					<ul class="list-unstyled list-inline">
+						<li>&copy; {{year}} <a class="external" href="https://github.com/edj-boston">edj</a></li>
+						<li><i class="fa fa-github"></i> <a class="external" href="https://github.com/edj-boston/void">source</a></li>
+					</ul>
+				</div>
+			</div>
+		</footer>
+
+		<script src="/js/jquery-1.11.0.min.js?{{timestamp}}"></script>
+		<script src="/js/bootstrap.min.js?{{timestamp}}"></script>
+		<script src="/js/custom.js?{{timestamp}}"></script>
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-16075338-10', 'voidjs.com');
+			ga('send', 'pageview');
+		</script>
+	</body>
+</html>
