@@ -1,0 +1,31 @@
+{
+  "name": "voidjs-com",
+  "version": "0.0.1",
+  "description": "The site of the Void NodeJS module",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/edj-boston/voidjs-com"
+  },
+  "keywords": [
+    "void"
+  ],
+  "author": "Eric Johnson <edj.boston@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/edj-boston/voidjs-com/issues"
+  },
+  "homepage": "https://voidjs.com",
+  "devDependencies": {
+    "del": "^2.0.2",
+    "gulp": "^3.9.0",
+    "mocha": "^2.3.3",
+    "void": "^0.1.6",
+    "gulp-compile-handlebars": "^0.5.0",
+    "moment": "^2.10.6",
+    "marked": "^0.3.5"
+  }
+}

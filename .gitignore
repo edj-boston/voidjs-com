@@ -1,4 +1,3 @@
 .DS_Store
-
-/deploy-live.sh
-/deploy-stage.sh
+build
+node_modules
