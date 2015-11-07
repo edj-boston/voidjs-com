@@ -5,9 +5,10 @@ var concat = require('gulp-concat'),
     gulp = require('gulp'),
     hb     = require('gulp-compile-handlebars'),
     md = require('marked'),
-    minify = require('gulp-minify-css'),
-	moment = require('moment'),
-	uglify = require('gulp-uglify');
+    minifyCSS = require('gulp-minify-css'),
+    minifyHTML = require('gulp-minify-html'),
+	minifyJS = require('gulp-uglify'),
+	moment = require('moment');
 
 
 // Catchall to copy static files to build
@@ -32,7 +33,7 @@ gulp.task('scripts', ['clean'], function() {
 			'assets/js/ga.js'
 		])
 		.pipe(concat('all.min.js'))
-		.pipe(uglify({preserveComments:'some'}))
+		.pipe(minifyJS({preserveComments:'some'}))
 		.pipe(gulp.dest('build/js'));
 });
 
@@ -44,7 +45,7 @@ gulp.task('styles', ['clean'], function() {
 			'assets/css/custom.css',
 			'assets/css/font-awesome.min.css'
 		])
-		.pipe(minify())
+		.pipe(minifyCSS())
 		.pipe(concat('all.min.css'))
 		.pipe(gulp.dest('build/css'));
 });
@@ -61,8 +62,9 @@ gulp.task('views', ['clean'], function() {
 		readme : md.parse(fs.readFileSync('node_modules/void/README.md', 'utf-8'))
 	};
 
-	return gulp.src('views/*.html')
+	return gulp.src('assets/views/*.html')
 		.pipe(hb(data))
+		.pipe(minifyHTML())
 		.pipe(gulp.dest('build'));
 });
 
