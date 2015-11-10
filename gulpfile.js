@@ -8,6 +8,7 @@ var concat = require('gulp-concat'),
     minifyCSS = require('gulp-minify-css'),
     minifyHTML = require('gulp-minify-html'),
 	minifyJS = require('gulp-uglify'),
+	mocha = require('gulp-mocha'),
 	moment = require('moment');
 
 
@@ -66,6 +67,13 @@ gulp.task('views', ['clean'], function() {
 		.pipe(hb(data))
 		.pipe(minifyHTML())
 		.pipe(gulp.dest('build'));
+});
+
+
+// Run tests
+gulp.task('test', ['build'], function() {
+    return gulp.src('test/index.js', { read:false })
+        .pipe(mocha());
 });
 
 
