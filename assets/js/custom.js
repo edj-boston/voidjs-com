@@ -7,4 +7,7 @@ $(document).ready(function() {
 		return false;
 	});
 
+	$('h1').each(function(item) {
+		console.log(item);
+	});
 });

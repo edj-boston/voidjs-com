@@ -12,16 +12,19 @@ var concat = require('gulp-concat'),
 	moment = require('moment');
 
 
+// Clean the build dir
+gulp.task('clean', function() {
+    del([
+    	'build/**',
+    	'!build'
+    ]);
+});
+
+
 // Catchall to copy static files to build
 gulp.task('static', ['clean'], function() {
     return gulp.src('assets/static/**')
         .pipe(gulp.dest('build'));
-});
-
-
-// Clean the build dir
-gulp.task('clean', function() {
-    return del('build');
 });
 
 
@@ -77,9 +80,14 @@ gulp.task('test', ['build'], function() {
 });
 
 
+// Watch files
+gulp.task('watch', function() {
+	return gulp.watch('assets/**', ['build']);
+});
+
+
 // Perform a build
 gulp.task('build', [
-    'clean',
     'static',
     'scripts',
     'styles',
@@ -87,4 +95,4 @@ gulp.task('build', [
 ]);
 
 // What to do when you run `$ gulp`
-gulp.task('default', ['build']);
+gulp.task('default', ['watch']);
