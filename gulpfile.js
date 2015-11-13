@@ -1,6 +1,7 @@
 // External dependencies
 var concat = require('gulp-concat'),
 	del  = require('del'),
+	express  = require('express'),
 	fs  = require('fs'),
     gulp = require('gulp'),
     hb     = require('gulp-compile-handlebars'),
@@ -86,6 +87,14 @@ gulp.task('watch', function() {
 });
 
 
+// Serve static files
+gulp.task('serve', function() {
+	var app = express();
+	app.use(express.static('build'));
+	app.listen(3000);
+});
+
+
 // Perform a build
 gulp.task('build', [
     'static',
@@ -95,4 +104,4 @@ gulp.task('build', [
 ]);
 
 // What to do when you run `$ gulp`
-gulp.task('default', ['watch']);
+gulp.task('default', ['build', 'watch', 'serve']);
