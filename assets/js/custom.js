@@ -7,7 +7,14 @@ $(document).ready(function() {
 		return false;
 	});
 
-	$('h1').each(function(item) {
-		console.log(item);
+	$('h2').each(function(i, el) {
+		var nav = $('#left-nav');
+		var li = $('<li>');
+		var a = $('<a/>')
+			.html($(el).text())
+			.attr('href', '#' + ($(el).attr('id')));
+
+		$(li).append(a);
+		$(nav).append(li);
 	});
 });
