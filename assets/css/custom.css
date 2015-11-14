@@ -50,10 +50,11 @@ h1 span { color:#231733; font-size:1em; }
 
 /* Buttons */
 #buttons { text-align:center; margin:0; padding:10px 0 3px; }
+#buttons li { margin:0.5em; }
 #bar { box-shadow:0 1px 5px #ccc; }
 
 /* Leftnav */
-.affix { top:3em; }
+.affix { top:0.5em; }
 .affix-top { margin-top:1.5em; }
 .affix-bottom { margin-top:3em; }
 .nav-pills>li>a { background:none; color:#660099; }
@@ -66,9 +67,10 @@ h1 span { color:#231733; font-size:1em; }
 
 /* Main */
 #main { padding-top:2em; padding-bottom:3em; }
-h2 { margin:2em 0 0.5em; padding-bottom:0.5em; border-bottom:1px solid #eee; }
+#main h1 { display:none; }
+#main h2 { margin:1em 0 0.5em; padding-bottom:0.5em; border-bottom:1px solid #eee; }
 #buttons.list-inline>li { padding:0; }
 
 /* Footer */
-footer { font-size:0.75em; margin:6em 3em 3em 3em; color:#333; }
+footer { font-size:0.75em; margin:3em; color:#333; }
 footer ul { text-align:center; }

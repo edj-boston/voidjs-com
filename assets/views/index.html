@@ -1,67 +1,67 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>VoidJS</title>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>VoidJS</title>
 
-		<link href="/css/all.min.css?{{timestamp}}" rel="stylesheet">
+        <link href="/css/all.min.css?{{timestamp}}" rel="stylesheet">
 
-		<link href="/favicon.ico" rel="shortcut icon">
-	</head>
-	<body data-spy="scroll" data-target=".navbar-example">
+        <link href="/favicon.ico" rel="shortcut icon">
+    </head>
+    <body data-spy="scroll" data-target=".navbar-example">
 
-		<header>
-			<div class="container">
-				<div class="row">
-					<div id="banner" class="col-md-offset-1 col-md-10">
-						<h1>Void<span>JS</span></h1>
-					</div>
-				</div>
-			</div>
-		</header>
+        <header>
+            <div class="container">
+                <div class="row">
+                    <div id="banner" class="col-md-offset-1 col-md-10">
+                        <h1>Void<span>JS</span></h1>
+                    </div>
+                </div>
+            </div>
+        </header>
 
-		<section id="bar">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-offset-1 col-md-10">
-						<ul id="buttons" class="list-inline">
-							<li><a href="https://twitter.com/share" class="twitter-share-button">Tweet</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></li>
-							<li class="hidden-xs"><a href="https://twitter.com/edjboston" class="twitter-follow-button" data-show-count="true">Follow @edjboston</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></li>
-							<li><iframe src="/inc/github-btn.html?user=edj-boston&amp;repo=void&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe></li>
-							<li class="hidden-xs"><iframe src="/inc/github-btn.html?user=edj-boston&amp;repo=void&amp;type=fork&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe></li>
-							<li class="hidden-xs"><iframe src="/inc/github-btn.html?user=edj-boston&amp;type=follow&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</section>
+        <section id="bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-10">
+                        <ul id="buttons" class="list-inline">
+                            <li><a href="https://twitter.com/share" class="twitter-share-button">Tweet</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></li>
+                            <li class="hidden-xs"><a href="https://twitter.com/edjboston" class="twitter-follow-button" data-show-count="true">Follow @edjboston</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></li>
+                            <li><iframe src="/inc/github-btn.html?user=edj-boston&amp;repo=void&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe></li>
+                            <li class="hidden-xs"><iframe src="/inc/github-btn.html?user=edj-boston&amp;repo=void&amp;type=fork&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe></li>
+                            <li class="hidden-xs"><iframe src="/inc/github-btn.html?user=edj-boston&amp;type=follow&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-		<main class="container">
-			<div class="row">
-				<div class="col-md-offset-1 col-md-2 hidden-xs hidden-sm">
-					<div class="navbar-example" data-spy="affix" data-offset-top="255">
-						<ul id="left-nav" class="nav nav-pills nav-stacked"></ul>
-					</div>
-				</div>
-				<div id="main" class="col-md-8">
-					{{{readme}}}
-				</div>
-			</div>
-		</main>
+        <main class="container">
+            <div class="row">
+                <div class="col-md-offset-1 col-md-2 hidden-xs hidden-sm">
+                    <div class="navbar-example" data-spy="affix" data-offset-top="255">
+                        <ul id="left-nav" class="nav nav-pills nav-stacked"></ul>
+                    </div>
+                </div>
+                <div id="main" class="col-md-8">
+                    {{{readme}}}
+                </div>
+            </div>
+        </main>
 
-		<footer class="container">
-			<div class="row">
-				<div class="col-md-offset-2 col-md-8">
-					<ul class="list-unstyled list-inline">
-						<li>&copy; {{year}} <a class="external" href="https://github.com/edj-boston">edj</a></li>
-						<li><i class="fa fa-github"></i> <a class="external" href="https://github.com/edj-boston/void">source</a></li>
-					</ul>
-				</div>
-			</div>
-		</footer>
+        <footer class="container">
+            <div class="row">
+                <div class="col-md-offset-2 col-md-8">
+                    <ul class="list-unstyled list-inline">
+                        <li>&copy; {{year}} <a class="external" href="https://github.com/edj-boston">edj</a></li>
+                        <li><i class="fa fa-github"></i> <a class="external" href="https://github.com/edj-boston/void">source</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
 
-		<script src="/js/all.min.js?{{timestamp}}"></script>
-	</body>
+        <script src="/js/all.min.js?{{timestamp}}"></script>
+    </body>
 </html>

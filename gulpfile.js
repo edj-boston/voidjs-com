@@ -1,23 +1,23 @@
 // External dependencies
 var concat = require('gulp-concat'),
-	del  = require('del'),
-	express  = require('express'),
-	fs  = require('fs'),
+    del  = require('del'),
+    express  = require('express'),
+    fs  = require('fs'),
     gulp = require('gulp'),
-    hb     = require('gulp-compile-handlebars'),
+    hb = require('gulp-compile-handlebars'),
     md = require('marked'),
     minifyCSS = require('gulp-minify-css'),
     minifyHTML = require('gulp-minify-html'),
-	minifyJS = require('gulp-uglify'),
-	mocha = require('gulp-mocha'),
-	moment = require('moment');
+    minifyJS = require('gulp-uglify'),
+    mocha = require('gulp-mocha'),
+    moment = require('moment');
 
 
 // Clean the build dir
 gulp.task('clean', function() {
-    del([
-    	'build/**',
-    	'!build'
+    return del([
+        'build/**',
+        '!build'
     ]);
 });
 
@@ -31,72 +31,75 @@ gulp.task('static', ['clean'], function() {
 
 // Minify and combine all JavaScript
 gulp.task('scripts', ['clean'], function() {
-	return gulp.src([
-			'assets/js/jquery-1.11.0.min.js',
-			'assets/js/bootstrap.min.js',
-			'assets/js/custom.js',
-			'assets/js/ga.js'
-		])
-		.pipe(concat('all.min.js'))
-		.pipe(minifyJS({preserveComments:'some'}))
-		.pipe(gulp.dest('build/js'));
+    return gulp.src([
+            'assets/js/jquery-1.11.0.min.js',
+            'assets/js/bootstrap.min.js',
+            'assets/js/custom.js',
+            'assets/js/ga.js'
+        ])
+        .pipe(concat('all.min.js'))
+        .pipe(minifyJS({preserveComments:'some'}))
+        .pipe(gulp.dest('build/js'));
 });
 
 
 // Minify and combine all CSS
 gulp.task('styles', ['clean'], function() {
-	return gulp.src([
-			'assets/css/bootstrap.min.css',
-			'assets/css/custom.css',
-			'assets/css/font-awesome.min.css'
-		])
-		.pipe(minifyCSS())
-		.pipe(concat('all.min.css'))
-		.pipe(gulp.dest('build/css'));
+    return gulp.src([
+            'assets/css/bootstrap.min.css',
+            'assets/css/custom.css',
+            'assets/css/font-awesome.min.css'
+        ])
+        .pipe(minifyCSS())
+        .pipe(concat('all.min.css'))
+        .pipe(gulp.dest('build/css'));
 });
 
 
 // Compile HB template
 gulp.task('views', ['clean'], function() {
 
-	md.setOptions({gfm: true});
+    md.setOptions({gfm: true});
 
-	var data = {
-		year : moment().format('YYYY'),
-		timestamp : moment().format('YYYY-MM-DD-HH-mm-ss'),
-		readme : md.parse(fs.readFileSync('node_modules/void/README.md', 'utf-8'))
-	};
+    var data = {
+        year : moment().format('YYYY'),
+        timestamp : moment().format('YYYY-MM-DD-HH-mm-ss'),
+        readme : md.parse(fs.readFileSync('node_modules/void/README.md', 'utf-8'))
+    };
 
-	return gulp.src('assets/views/*.html')
-		.pipe(hb(data))
-		.pipe(minifyHTML())
-		.pipe(gulp.dest('build'));
+    return gulp.src('assets/views/*.html')
+        .pipe(hb(data))
+        .pipe(minifyHTML())
+        .pipe(gulp.dest('build'));
 });
 
 
 // Run tests
-gulp.task('test', ['build'], function() {
-    return gulp.src('test/index.js', { read:false })
+gulp.task('test', ['clean', 'build'], function() {
+    return gulp.src('test/index.js', {
+            read: false
+        })
         .pipe(mocha());
 });
 
 
 // Watch files
-gulp.task('watch', function() {
-	return gulp.watch('assets/**', ['build']);
+gulp.task('watch', ['clean', 'build'], function() {
+    return gulp.watch('assets/**', ['build']);
 });
 
 
 // Serve static files
-gulp.task('serve', function() {
-	var app = express();
-	app.use(express.static('build'));
-	app.listen(3000);
+gulp.task('serve', ['clean', 'build'], function() {
+    var app = express();
+    app.use(express.static('build'));
+    app.listen(3000);
 });
 
 
 // Perform a build
 gulp.task('build', [
+    'clean',
     'static',
     'scripts',
     'styles',
