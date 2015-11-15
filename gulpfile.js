@@ -59,12 +59,13 @@ gulp.task('styles', ['clean'], function() {
 // Compile HB template
 gulp.task('views', ['clean'], function() {
 
-    md.setOptions({gfm: true});
+    md.setOptions({ gfm:true });
 
     var data = {
         year : moment().format('YYYY'),
         timestamp : moment().format('YYYY-MM-DD-HH-mm-ss'),
-        readme : md.parse(fs.readFileSync('node_modules/void/README.md', 'utf-8'))
+        readme : md.parse(fs.readFileSync('node_modules/void/README.md', 'utf-8')),
+        version : JSON.parse(fs.readFileSync('node_modules/void/package.json')).version
     };
 
     return gulp.src('assets/views/*.html')

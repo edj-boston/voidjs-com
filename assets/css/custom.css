@@ -47,6 +47,7 @@ header { background:#4f3b5b;
 #banner { height:12em; }
 h1 { font-family:'Gotham-Light'; font-size:4em; font-weight:normal; text-align:right; color:#eee; margin:0; padding:0.2em; display:block; position:absolute; bottom:0; right:0; }
 h1 span { color:#231733; font-size:1em; }
+h5 { font-family:'Gotham-Light'; font-size:1em; font-weight:normal; text-align:right; color:#eee; margin:0; padding:1em; display:block; position:absolute; bottom:0; right:0; }
 
 /* Buttons */
 #buttons { text-align:center; margin:0; padding:10px 0 3px; }
