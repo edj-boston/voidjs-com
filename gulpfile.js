@@ -38,6 +38,14 @@ gulp.task('static', ['clean'], function() {
 });
 
 
+// Copy installed fonts
+gulp.task('fonts', ['clean'], function() {
+    return gulp.src('node_modules/font-awesome/fonts/*')
+        .pipe(gzip({ append: false }))
+        .pipe(gulp.dest('build/fonts'));
+});
+
+
 // Minify and combine all JavaScript
 gulp.task('scripts', ['clean'], function() {
     return gulp.src([
@@ -56,8 +64,8 @@ gulp.task('scripts', ['clean'], function() {
 gulp.task('styles', ['clean'], function() {
     return gulp.src([
             'node_modules/bootstrap/dist/css/bootstrap.css',
-            'src/css/custom.css',
-            'src/css/font-awesome.min.css'
+            'node_modules/font-awesome/css/font-awesome.css',
+            'src/css/custom.css'
         ])
         .pipe(minifyCSS())
         .pipe(concat('all.min.css'))
@@ -96,7 +104,7 @@ gulp.task('views', ['clean'], function(done) {
  */
 
 // Run tests
-gulp.task('test', ['static', 'scripts', 'styles', 'views'], function() {
+gulp.task('test', ['static', 'fonts', 'scripts', 'styles', 'views'], function() {
     return gulp.src('test/*')
         .pipe(mocha());
 });
@@ -134,7 +142,7 @@ gulp.task('watch', ['build'], function() {
 // Perform a build
 gulp.task('build', [
     // 'clean',
-    // 'static', 'scripts', 'styles', 'views'
+    // 'static', 'fonts', scripts', 'styles', 'views'
     'test'
 ]);
 
