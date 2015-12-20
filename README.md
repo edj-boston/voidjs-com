@@ -29,4 +29,11 @@ $ gulp -p 3001
 ```
 
 
-Editing files in the `assets` directory will automatically trigger a rebuild. Check terminal output for errors and restart as necessary.
+Editing files in the `src` directory will automatically trigger a rebuild. Check terminal output for errors and restart as necessary.
+
+To do
+-----
+
+* Partial views and layouts
+* Error page
+* LESS
