@@ -1,4 +1,3 @@
-// External dependencies
 var argv       = require('yargs').argv,
     concat     = require('gulp-concat'),
     del        = require('del'),
@@ -16,15 +15,20 @@ var argv       = require('yargs').argv,
     moment     = require('moment');
 
 
+/* *
+ * Build step 0
+ */
+
 // Clean the build dir
 gulp.task('clean', function(done) {
-    del([
-        'build/**',
-        '!build'
-    ])
+    del(['build/**', '!build'])
         .then(done());
 });
 
+
+/* *
+ * Build step 1
+ */
 
 // Catchall to copy static files to build
 gulp.task('static', ['clean'], function() {
@@ -88,21 +92,23 @@ gulp.task('views', ['clean'], function(done) {
 });
 
 
+/* *
+ * Build Step 2
+ */
+
 // Run tests
-gulp.task('test', ['clean', 'build'], function() {
+gulp.task('test', ['static', 'scripts', 'styles', 'views'], function() {
     return gulp.src('test')
         .pipe(mocha());
 });
 
 
-// Watch files
-gulp.task('watch', ['clean', 'build'], function() {
-    return gulp.watch('src/**', ['build']);
-});
+/* *
+ * Helper tasks
+ */
 
-
-// Serve static files
-gulp.task('serve', ['clean', 'build'], function(done) {
+// Serve built files
+gulp.task('serve', function(done) {
     var port = argv.p || 3000;
 
     express()
@@ -121,15 +127,17 @@ gulp.task('serve', ['clean', 'build'], function(done) {
         });
 });
 
+// Watch files
+gulp.task('watch', ['build'], function() {
+    return gulp.watch('src/**', ['build']);
+});
 
 // Perform a build
 gulp.task('build', [
-    'clean',
-    'static',
-    'scripts',
-    'styles',
-    'views'
+    // 'clean',
+    // 'static', 'scripts', 'styles', 'views'
+    'test'
 ]);
 
 // What to do when you run `$ gulp`
-gulp.task('default', ['build', 'watch', 'serve']);
+gulp.task('default', ['watch', 'serve']);
