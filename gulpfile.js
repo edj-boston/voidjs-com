@@ -98,7 +98,7 @@ gulp.task('views', ['clean'], function(done) {
 
 // Run tests
 gulp.task('test', ['static', 'scripts', 'styles', 'views'], function() {
-    return gulp.src('test')
+    return gulp.src('test/*')
         .pipe(mocha());
 });
 
