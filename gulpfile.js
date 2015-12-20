@@ -41,13 +41,12 @@ gulp.task('static', ['clean'], function() {
 // Minify and combine all JavaScript
 gulp.task('scripts', ['clean'], function() {
     return gulp.src([
-            'src/js/jquery-1.11.0.min.js',
-            'src/js/bootstrap.min.js',
-            'src/js/custom.js',
-            'src/js/ga.js'
+            'node_modules/jquery/dist/jquery.js',
+            'node_modules/bootstrap/bootstrap.js',
+            'src/js/*'
         ])
         .pipe(concat('all.min.js'))
-        .pipe(minifyJS({preserveComments:'some'}))
+        .pipe(minifyJS({ preserveComments: 'some' }))
         .pipe(gzip({ append: false }))
         .pipe(gulp.dest('build/js'));
 });
@@ -56,7 +55,7 @@ gulp.task('scripts', ['clean'], function() {
 // Minify and combine all CSS
 gulp.task('styles', ['clean'], function() {
     return gulp.src([
-            'src/css/bootstrap.min.css',
+            'node_modules/bootstrap/dist/css/bootstrap.css',
             'src/css/custom.css',
             'src/css/font-awesome.min.css'
         ])
