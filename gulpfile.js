@@ -50,7 +50,7 @@ gulp.task('fonts', ['clean'], function() {
 gulp.task('scripts', ['clean'], function() {
     return gulp.src([
             'node_modules/jquery/dist/jquery.js',
-            'node_modules/bootstrap/bootstrap.js',
+            'node_modules/bootstrap/dist/js/bootstrap.js',
             'src/js/*'
         ])
         .pipe(concat('all.min.js'))

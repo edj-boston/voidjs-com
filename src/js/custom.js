@@ -1,3 +1,7 @@
+/*!
+ * Custom JavaScript
+ */
+
 $(document).ready(function() {
 
     // Open external links in new window
