@@ -5,6 +5,7 @@ var argv = require('yargs').argv,
     express  = require('express'),
     fs  = require('fs'),
     gulp = require('gulp'),
+    gutil = require('gulp-util'),
     hb = require('gulp-compile-handlebars'),
     md = require('marked'),
     minifyCSS = require('gulp-minify-css'),
@@ -97,7 +98,9 @@ gulp.task('serve', ['clean', 'build'], function() {
 
     express()
         .use(express.static('build'))
-        .listen(port);
+        .listen(port, function() {
+            gutil.log('Server listening at port', port);
+        });
 });
 
 
