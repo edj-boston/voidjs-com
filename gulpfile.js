@@ -24,7 +24,7 @@ gulp.task('clean', function(done) {
 
 // Catchall to copy static files to build
 gulp.task('static', ['clean'], function() {
-    return gulp.src('assets/static/**')
+    return gulp.src('src/static/**')
         .pipe(gulp.dest('build'));
 });
 
@@ -32,10 +32,10 @@ gulp.task('static', ['clean'], function() {
 // Minify and combine all JavaScript
 gulp.task('scripts', ['clean'], function() {
     return gulp.src([
-            'assets/js/jquery-1.11.0.min.js',
-            'assets/js/bootstrap.min.js',
-            'assets/js/custom.js',
-            'assets/js/ga.js'
+            'src/js/jquery-1.11.0.min.js',
+            'src/js/bootstrap.min.js',
+            'src/js/custom.js',
+            'src/js/ga.js'
         ])
         .pipe(concat('all.min.js'))
         .pipe(minifyJS({preserveComments:'some'}))
@@ -46,9 +46,9 @@ gulp.task('scripts', ['clean'], function() {
 // Minify and combine all CSS
 gulp.task('styles', ['clean'], function() {
     return gulp.src([
-            'assets/css/bootstrap.min.css',
-            'assets/css/custom.css',
-            'assets/css/font-awesome.min.css'
+            'src/css/bootstrap.min.css',
+            'src/css/custom.css',
+            'src/css/font-awesome.min.css'
         ])
         .pipe(minifyCSS())
         .pipe(concat('all.min.css'))
@@ -68,7 +68,7 @@ gulp.task('views', ['clean'], function() {
         version : JSON.parse(fs.readFileSync('node_modules/void/package.json')).version
     };
 
-    return gulp.src('assets/views/*.html')
+    return gulp.src('src/views/*.html')
         .pipe(hb(data))
         .pipe(minifyHTML())
         .pipe(gulp.dest('build'));
@@ -77,16 +77,14 @@ gulp.task('views', ['clean'], function() {
 
 // Run tests
 gulp.task('test', ['clean', 'build'], function() {
-    return gulp.src('test/index.js', {
-            read: false
-        })
+    return gulp.src('test')
         .pipe(mocha());
 });
 
 
 // Watch files
 gulp.task('watch', ['clean', 'build'], function() {
-    return gulp.watch('assets/**', ['build']);
+    return gulp.watch('src/**', ['build']);
 });
 
 
