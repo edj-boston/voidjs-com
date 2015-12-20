@@ -1,5 +1,6 @@
 // External dependencies
-var concat = require('gulp-concat'),
+var argv = require('yargs').argv,
+    concat = require('gulp-concat'),
     del  = require('del'),
     express  = require('express'),
     fs  = require('fs'),
@@ -92,9 +93,11 @@ gulp.task('watch', ['clean', 'build'], function() {
 
 // Serve static files
 gulp.task('serve', ['clean', 'build'], function() {
-    var app = express();
-    app.use(express.static('build'));
-    app.listen(3000);
+    var port = argv.p || 3000;
+
+    express()
+        .use(express.static('build'))
+        .listen(port);
 });
 
 
