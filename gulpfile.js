@@ -6,6 +6,7 @@ var argv       = require('yargs').argv,
     fs         = require('fs'),
     gulp       = require('gulp'),
     gutil      = require('gulp-util'),
+    gzip       = require('gulp-gzip'),
     hb         = require('gulp-compile-handlebars'),
     marked     = require('marked'),
     minifyCSS  = require('gulp-minify-css'),
@@ -17,7 +18,10 @@ var argv       = require('yargs').argv,
 
 // Clean the build dir
 gulp.task('clean', function(done) {
-    del('build')
+    del([
+        'build/**',
+        '!build'
+    ])
         .then(done());
 });
 
@@ -25,6 +29,7 @@ gulp.task('clean', function(done) {
 // Catchall to copy static files to build
 gulp.task('static', ['clean'], function() {
     return gulp.src('src/static/**')
+        .pipe(gzip({ append: false }))
         .pipe(gulp.dest('build'));
 });
 
@@ -39,6 +44,7 @@ gulp.task('scripts', ['clean'], function() {
         ])
         .pipe(concat('all.min.js'))
         .pipe(minifyJS({preserveComments:'some'}))
+        .pipe(gzip({ append: false }))
         .pipe(gulp.dest('build/js'));
 });
 
@@ -52,6 +58,7 @@ gulp.task('styles', ['clean'], function() {
         ])
         .pipe(minifyCSS())
         .pipe(concat('all.min.css'))
+        .pipe(gzip({ append: false }))
         .pipe(gulp.dest('build/css'));
 });
 
@@ -73,6 +80,7 @@ gulp.task('views', ['clean'], function(done) {
             gulp.src('src/views/*.html')
                 .pipe(hb(data))
                 .pipe(minifyHTML())
+                .pipe(gzip({ append: false }))
                 .pipe(gulp.dest('build'))
                 .on('end', done);
         });
@@ -94,13 +102,22 @@ gulp.task('watch', ['clean', 'build'], function() {
 
 
 // Serve static files
-gulp.task('serve', ['clean', 'build'], function() {
+gulp.task('serve', ['clean', 'build'], function(done) {
     var port = argv.p || 3000;
 
     express()
+        .use(function(req, res, next) {
+            res.header('Content-Encoding', 'gzip');
+            next();
+        })
         .use(express.static('build'))
+        .use(function(req, res) {
+            res.status(404)
+                .sendFile(__dirname + '/build/error.html');
+        })
         .listen(port, function() {
-            gutil.log('Server listening at port', port);
+            gutil.log('Server listening on port', port);
+            done();
         });
 });
 
