@@ -16,11 +16,9 @@ var argv       = require('yargs').argv,
 
 
 // Clean the build dir
-gulp.task('clean', function() {
-    return del([
-        'build/**',
-        '!build'
-    ]);
+gulp.task('clean', function(done) {
+    del('build')
+        .then(done());
 });
 
 
