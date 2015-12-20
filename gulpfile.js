@@ -7,7 +7,7 @@ var argv       = require('yargs').argv,
     gulp       = require('gulp'),
     gutil      = require('gulp-util'),
     hb         = require('gulp-compile-handlebars'),
-    md         = require('marked'),
+    marked     = require('marked'),
     minifyCSS  = require('gulp-minify-css'),
     minifyHTML = require('gulp-minify-html'),
     minifyJS   = require('gulp-uglify'),
@@ -57,21 +57,26 @@ gulp.task('styles', ['clean'], function() {
 
 
 // Compile HB template
-gulp.task('views', ['clean'], function() {
+gulp.task('views', ['clean'], function(done) {
+    fs.readFile('./node_modules/void/README.md', 'utf-8', function(err, readme) {
+        if (err) throw err;
+        fs.readFile('./node_modules/void/package.json', 'utf-8', function(err, pkg) {
+            if (err) throw err;
 
-    md.setOptions({ gfm:true });
+            var data = {
+                year      : moment().format('YYYY'),
+                timestamp : moment().format('YYYY-MM-DD-HH-mm-ss'),
+                readme    : marked(readme),
+                version   : JSON.parse(pkg).version
+            };
 
-    var data = {
-        year : moment().format('YYYY'),
-        timestamp : moment().format('YYYY-MM-DD-HH-mm-ss'),
-        readme : md.parse(fs.readFileSync('node_modules/void/README.md', 'utf-8')),
-        version : JSON.parse(fs.readFileSync('node_modules/void/package.json')).version
-    };
-
-    return gulp.src('src/views/*.html')
-        .pipe(hb(data))
-        .pipe(minifyHTML())
-        .pipe(gulp.dest('build'));
+            gulp.src('src/views/*.html')
+                .pipe(hb(data))
+                .pipe(minifyHTML())
+                .pipe(gulp.dest('build'))
+                .on('end', done);
+        });
+    });
 });
 
 
