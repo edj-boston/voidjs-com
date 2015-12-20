@@ -1,18 +1,18 @@
 // External dependencies
-var argv = require('yargs').argv,
-    concat = require('gulp-concat'),
-    del  = require('del'),
-    express  = require('express'),
-    fs  = require('fs'),
-    gulp = require('gulp'),
-    gutil = require('gulp-util'),
-    hb = require('gulp-compile-handlebars'),
-    md = require('marked'),
-    minifyCSS = require('gulp-minify-css'),
+var argv       = require('yargs').argv,
+    concat     = require('gulp-concat'),
+    del        = require('del'),
+    express    = require('express'),
+    fs         = require('fs'),
+    gulp       = require('gulp'),
+    gutil      = require('gulp-util'),
+    hb         = require('gulp-compile-handlebars'),
+    md         = require('marked'),
+    minifyCSS  = require('gulp-minify-css'),
     minifyHTML = require('gulp-minify-html'),
-    minifyJS = require('gulp-uglify'),
-    mocha = require('gulp-mocha'),
-    moment = require('moment');
+    minifyJS   = require('gulp-uglify'),
+    mocha      = require('gulp-mocha'),
+    moment     = require('moment');
 
 
 // Clean the build dir
