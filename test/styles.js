@@ -28,8 +28,12 @@ describe('The dynamically concatenated and minified CSS...', function() {
         str.indexOf('Bootstrap').should.not.equal(-1);
     });
 
-    it('Should contain Custom styles', function() {
+    it('Should contain custom styles', function() {
         str.indexOf('Custom Styles').should.not.equal(-1);
+    });
+
+    it('Should contain custom fonts', function() {
+        str.indexOf('Custom Fonts').should.not.equal(-1);
     });
 
     it('Should contain Font Awesome styles', function() {

@@ -1,0 +1,66 @@
+/*!
+ * Custom Styles
+ */
+
+/* Base styles */
+* { font-family:'Open-Sans'; font-size:16px; }
+html, body { margin:0; padding:0; background:#fff; }
+pre, code { font-family:'SourceCodePro'; }
+code { background-color:#ccccff; color:#333366; }
+a { color:#660099;
+	&:hover { color:#660099; }
+}
+
+/* Github buttons */
+#bar { background:#eee; }
+
+/* Header */
+header {
+	background:#4f3b5b;
+	background:-webkit-radial-gradient(ellipse at center,#4f3b5b 0,#231733 100%);
+	background:-moz-radial-gradient(ellipse at center,#4f3b5b 0,#231733 100%);
+	background:-ms-radial-gradient(ellipse at center,#4f3b5b 0,#231733 100%);
+	background:radial-gradient(ellipse at center,#4f3b5b 0,#231733 100%);
+}
+#banner { height:12em; }
+h1 { font-family:'Gotham-Light'; font-size:4em; font-weight:normal; text-align:right; color:#eee; margin:0; padding:0.2em; display:block; position:absolute; bottom:0; right:0;
+	span { color:#231733; font-size:1em; }
+}
+h5 { font-family:'Gotham-Light'; font-size:1em; font-weight:normal; text-align:right; color:#eee; margin:0; padding:1em; display:block; position:absolute; bottom:0; right:0; }
+
+/* Buttons */
+#buttons { text-align:center; margin:0; padding:10px 0 3px;
+	li { margin:0.5em; }
+}
+#bar { box-shadow:0 1px 5px #ccc; }
+
+/* Leftnav */
+.affix { top:0.5em; }
+.affix-top { margin-top:1.5em; }
+.affix-bottom { margin-top:3em; }
+.nav-pills {
+	> li {
+		> a { background:none; color:#660099;
+			&:hover,
+			&:focus { background:none; text-decoration:underline; }
+		}
+		&.active {
+			> a,
+			> a:hover,
+			> a:focus { background:none; color:#660099; font-weight:bold; }
+			> a:before { font-family:FontAwesome; content:'\f054'; font-size:0.8em; position:absolute; line-height:2em; left:-0.5em; }
+		}
+	}
+}
+
+/* Main */
+#main { padding-top:2em; padding-bottom:3em;
+	h1 { display:none; }
+	h2 { margin:1em 0 0.5em; padding-bottom:0.5em; border-bottom:1px solid #eee; }
+}
+#buttons.list-inline>li { padding:0; }
+
+/* Footer */
+footer { font-size:0.75em; margin:3em; color:#333;
+	ul { text-align:center; }
+}

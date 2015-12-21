@@ -4,9 +4,11 @@ var argv       = require('yargs').argv,
     express    = require('express'),
     fs         = require('fs'),
     gulp       = require('gulp'),
+    gulpif     = require('gulp-if'),
     gutil      = require('gulp-util'),
     gzip       = require('gulp-gzip'),
     hb         = require('gulp-compile-handlebars'),
+    less       = require('gulp-less'),
     marked     = require('marked'),
     minifyCSS  = require('gulp-minify-css'),
     minifyHTML = require('gulp-minify-html'),
@@ -65,8 +67,9 @@ gulp.task('styles', ['clean'], function() {
     return gulp.src([
             'node_modules/bootstrap/dist/css/bootstrap.css',
             'node_modules/font-awesome/css/font-awesome.css',
-            'src/css/custom.css'
+            'src/less/*'
         ])
+        .pipe(gulpif(/[.]less$/, less()))
         .pipe(minifyCSS())
         .pipe(concat('all.min.css'))
         .pipe(gzip({ append: false }))
