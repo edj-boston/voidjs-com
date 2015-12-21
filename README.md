@@ -36,4 +36,3 @@ To do
 
 * Partial views and layouts
 * Error page
-* LESS
