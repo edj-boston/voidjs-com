@@ -7,14 +7,21 @@ var argv       = require('yargs').argv,
     gulpif     = require('gulp-if'),
     gutil      = require('gulp-util'),
     gzip       = require('gulp-gzip'),
-    hb         = require('gulp-compile-handlebars'),
+    hb         = require('handlebars'),
+    layouts    = require('handlebars-layouts'),
     less       = require('gulp-less'),
     marked     = require('marked'),
     minifyCSS  = require('gulp-minify-css'),
     minifyHTML = require('gulp-minify-html'),
     minifyJS   = require('gulp-uglify'),
     mocha      = require('gulp-mocha'),
-    moment     = require('moment');
+    moment     = require('moment'),
+    path       = require('path'),
+    tap        = require('gulp-tap');
+
+
+// Configure handlebars
+layouts.register(hb);
 
 
 /* *
@@ -77,8 +84,25 @@ gulp.task('styles', ['clean'], function() {
 });
 
 
+/* *
+ * Build step 2
+ */
+
+// Register partials
+gulp.task('partials', ['static', 'fonts', 'scripts', 'styles'], function() {
+    return gulp.src('src/views/partials/*.html')
+        .pipe(tap(function(file) {
+            hb.registerPartial(path.parse(file.path).name, file.contents.toString());
+        }));
+});
+
+
+/* *
+ * Build step 3
+ */
+
 // Compile HB template
-gulp.task('views', ['clean'], function(done) {
+gulp.task('views', ['partials'], function(done) {
     fs.readFile('./node_modules/void/README.md', 'utf-8', function(err, readme) {
         if (err) throw err;
         fs.readFile('./node_modules/void/package.json', 'utf-8', function(err, pkg) {
@@ -92,7 +116,10 @@ gulp.task('views', ['clean'], function(done) {
             };
 
             gulp.src('src/views/*.html')
-                .pipe(hb(data))
+                .pipe(tap(function(file) {
+                    var template = hb.compile(file.contents.toString());
+                    file.contents = new Buffer(template(data));
+                }))
                 .pipe(minifyHTML())
                 .pipe(gzip({ append: false }))
                 .pipe(gulp.dest('build'))
@@ -103,11 +130,11 @@ gulp.task('views', ['clean'], function(done) {
 
 
 /* *
- * Build Step 2
+ * Build Step 4
  */
 
 // Run tests
-gulp.task('test', ['static', 'fonts', 'scripts', 'styles', 'views'], function() {
+gulp.task('test', ['views'], function() {
     return gulp.src('test/*')
         .pipe(mocha());
 });
@@ -144,8 +171,10 @@ gulp.task('watch', ['build'], function() {
 
 // Perform a build
 gulp.task('build', [
-    // 'clean',
-    // 'static', 'fonts', scripts', 'styles', 'views'
+    // Step 0: clean
+    // Step 1: static, fonts, scripts, styles
+    // Step 2: partials
+    // Step 3: views
     'test'
 ]);
 
