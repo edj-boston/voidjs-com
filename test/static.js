@@ -17,11 +17,4 @@ describe('The assets copied from the src/static directory...', function() {
         });
     });
 
-    it('Should include a github button include', function(done) {
-        fs.stat('build/inc/github-btn.html', function(err) {
-            if (err) throw err;
-            done();
-        });
-    });
-
 });
