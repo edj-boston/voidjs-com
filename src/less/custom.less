@@ -2,6 +2,10 @@
  * Custom Styles
  */
 
+/* Color vars */
+@purple-light:#4f3b5b;
+@purple-dark:#231733;
+
 /* Base styles */
 * { font-family:'Open-Sans'; font-size:16px; }
 html, body { margin:0; padding:0; background:#fff; }
@@ -16,15 +20,15 @@ a { color:#660099;
 
 /* Header */
 header {
-	background:#4f3b5b;
-	background:-webkit-radial-gradient(ellipse at center,#4f3b5b 0,#231733 100%);
-	background:-moz-radial-gradient(ellipse at center,#4f3b5b 0,#231733 100%);
-	background:-ms-radial-gradient(ellipse at center,#4f3b5b 0,#231733 100%);
-	background:radial-gradient(ellipse at center,#4f3b5b 0,#231733 100%);
+	background:@purple-light;
+	background:-webkit-radial-gradient(ellipse at center,@purple-light 0,@purple-dark 100%);
+	background:-moz-radial-gradient(ellipse at center,@purple-light 0,@purple-dark 100%);
+	background:-ms-radial-gradient(ellipse at center,@purple-light 0,@purple-dark 100%);
+	background:radial-gradient(ellipse at center,@purple-light 0,@purple-dark 100%);
 }
 #banner { height:12em; }
 h1 { font-family:'Gotham-Light'; font-size:4em; font-weight:normal; text-align:right; color:#eee; margin:0; padding:0.2em; display:block; position:absolute; bottom:0; right:0;
-	span { color:#231733; font-size:1em; }
+	span { color:@purple-dark; font-size:1em; }
 }
 h5 { font-family:'Gotham-Light'; font-size:1em; font-weight:normal; text-align:right; color:#eee; margin:0; padding:1em; display:block; position:absolute; bottom:0; right:0; }
 
@@ -49,6 +53,22 @@ h5 { font-family:'Gotham-Light'; font-size:1em; font-weight:normal; text-align:r
 			> a:hover,
 			> a:focus { background:none; color:#660099; font-weight:bold; }
 			> a:before { font-family:FontAwesome; content:'\f054'; font-size:0.8em; position:absolute; line-height:2em; left:-0.5em; }
+		}
+	}
+}
+
+/* Body */
+html { height:100%; width:100%; }
+body {
+	&.error {
+		height:100%; width:100%; background:@purple-light;
+		background:-webkit-radial-gradient(ellipse at center,@purple-light 0,@purple-dark 100%);
+		background:-moz-radial-gradient(ellipse at center,@purple-light 0,@purple-dark 100%);
+		background:-ms-radial-gradient(ellipse at center,@purple-light 0,@purple-dark 100%);
+		background:radial-gradient(ellipse at center,@purple-light 0,@purple-dark 100%);
+		h1 { margin:auto; padding-top:3em; text-align:center; position:relative; }
+		p { color:#fff; margin-left:auto; margin-right:auto; text-align:center;
+			a { color:#ccc; }
 		}
 	}
 }

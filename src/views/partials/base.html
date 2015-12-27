@@ -1,10 +1,16 @@
 <!doctype html>
 <html>
 	<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>{{title}}</title>
+        <link href="/css/all.min.css?{{timestamp}}" rel="stylesheet">
+        <link href="/favicon.ico" rel="shortcut icon">
 	</head>
-	<body>
+	<body class="{{bodyClass}}">
 		{{#block "body"}}
 		{{/block}}
+        <script src="/js/all.min.js?{{timestamp}}"></script>
 	</body>
 </html>
