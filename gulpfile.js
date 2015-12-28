@@ -42,6 +42,10 @@ gulp.task('clean', function(done) {
 // Catchall to copy static files to build
 gulp.task('static', ['clean'], function() {
     return gulp.src('src/static/**')
+        .pipe(gulpif(/robots\.txt/, tap(function(file) {
+            if ( process.env.TRAVIS_BRANCH == 'master' )
+                file.contents = new Buffer('');
+        })))
         .pipe(gzip({ append: false }))
         .pipe(gulp.dest('build'));
 });
