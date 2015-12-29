@@ -63,29 +63,29 @@ gulp.task('fonts', ['clean'], function() {
 // Minify and combine all JavaScript
 gulp.task('scripts', ['clean'], function() {
     return gulp.src([
-            'node_modules/jquery/dist/jquery.js',
-            'node_modules/bootstrap/dist/js/bootstrap.js',
-            'src/js/*'
-        ])
-        .pipe(concat('all.min.js'))
-        .pipe(minifyJS({ preserveComments: 'some' }))
-        .pipe(gzip({ append: false }))
-        .pipe(gulp.dest('build/js'));
+        'node_modules/jquery/dist/jquery.js',
+        'node_modules/bootstrap/dist/js/bootstrap.js',
+        'src/js/*'
+    ])
+    .pipe(concat('all.min.js'))
+    .pipe(minifyJS({ preserveComments: 'some' }))
+    .pipe(gzip({ append: false }))
+    .pipe(gulp.dest('build/js'));
 });
 
 
 // Minify and combine all CSS
 gulp.task('styles', ['clean'], function() {
     return gulp.src([
-            'node_modules/bootstrap/dist/css/bootstrap.css',
-            'node_modules/font-awesome/css/font-awesome.css',
-            'src/less/*'
-        ])
-        .pipe(gulpif(/[.]less$/, less()))
-        .pipe(minifyCSS())
-        .pipe(concat('all.min.css'))
-        .pipe(gzip({ append: false }))
-        .pipe(gulp.dest('build/css'));
+        'node_modules/bootstrap/dist/css/bootstrap.css',
+        'node_modules/font-awesome/css/font-awesome.css',
+        'src/less/*'
+    ])
+    .pipe(gulpif(/[.]less$/, less()))
+    .pipe(minifyCSS())
+    .pipe(concat('all.min.css'))
+    .pipe(gzip({ append: false }))
+    .pipe(gulp.dest('build/css'));
 });
 
 
@@ -141,7 +141,9 @@ gulp.task('views', ['partials'], function(done) {
 // Run tests
 gulp.task('test', ['views'], function() {
     return gulp.src('test/*')
-        .pipe(mocha());
+        .pipe(mocha({
+            require : ['should']
+        }));
 });
 
 

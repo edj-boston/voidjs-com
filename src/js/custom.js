@@ -5,7 +5,7 @@
 $(document).ready(function() {
 
     // Open external links in new window
-    $('a.external').click(function(e) {
+    $('a.external').click(function() {
         var url = $(this).attr('href');
         window.open(url, 'new');
         return false;

@@ -1,5 +1,4 @@
 var jsdom  = require('jsdom').jsdom,
-    should = require('should'),
     fs     = require('fs'),
     moment = require('moment'),
     zlib   = require('zlib');
