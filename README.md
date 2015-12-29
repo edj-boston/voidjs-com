@@ -34,6 +34,4 @@ Editing files in the `src` directory will automatically trigger a rebuild. Check
 To do
 -----
 
-* Partial views and layouts
-* Upgrade should
 * Gulp David
