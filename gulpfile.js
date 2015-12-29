@@ -1,6 +1,7 @@
 var argv       = require('yargs').argv,
     concat     = require('gulp-concat'),
     del        = require('del'),
+    eslint     = require('gulp-eslint'),
     express    = require('express'),
     fs         = require('fs'),
     gulp       = require('gulp'),
@@ -145,6 +146,23 @@ gulp.task('test', ['views'], function() {
 
 
 /* *
+ * Build Step 5
+ */
+
+// Lint as JS files (including this one)
+gulp.task('lint', ['test'], function () {
+    return gulp.src([
+        'src/js/*.js',
+        'gulpfile.js',
+        'test/*.js',
+        '!node_modules/**'
+    ])
+    .pipe(eslint())
+    .pipe(eslint.format());
+});
+
+
+/* *
  * Helper tasks
  */
 
@@ -179,7 +197,8 @@ gulp.task('build', [
     // Step 1: static, fonts, scripts, styles
     // Step 2: partials
     // Step 3: views
-    'test'
+    // Step 4: test
+    'lint'
 ]);
 
 // What to do when you run `$ gulp`

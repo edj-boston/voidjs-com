@@ -26,6 +26,7 @@
     "font-awesome": "^4.5.0",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
+    "gulp-eslint": "^1.1.1",
     "gulp-gzip": "^1.2.0",
     "gulp-if": "^2.0.0",
     "gulp-less": "^3.0.5",
@@ -45,5 +46,33 @@
     "should": "^8.0.2",
     "void": "^1.0.0",
     "yargs": "^3.31.0"
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "env": {
+      "node": true,
+      "es6": true,
+      "mocha": true
+    },
+    "globals": {
+      "$": true,
+      "window": true,
+      "document": true,
+      "ga": true
+    },
+    "rules": {
+      "no-mixed-spaces-and-tabs": 2,
+      "space-after-keywords": 2,
+      "semi": 2,
+      "camelcase": 1,
+      "curly": [
+        2,
+        "multi"
+      ],
+      "no-unused-vars": 2,
+      "comma-dangle": 2,
+      "quotes": 0,
+      "indent": 2
+    }
   }
 }
