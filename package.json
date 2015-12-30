@@ -43,6 +43,7 @@
     "marked": "^0.3.5",
     "mocha": "^2.3.3",
     "moment": "^2.10.6",
+    "npm-font-open-sans": "0.0.3",
     "should": "^8.0.2",
     "void": "^1.0.0",
     "yargs": "^3.31.0"

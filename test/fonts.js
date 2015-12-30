@@ -28,10 +28,10 @@ describe('The build/fonts directory...', function() {
     });
 
     it('Should include Open-Sans font files', function() {
-        files.should.containEql('Open-Sans.eot');
-        files.should.containEql('Open-Sans.svg');
-        files.should.containEql('Open-Sans.ttf');
-        files.should.containEql('Open-Sans.woff');
+        files.should.containEql('OpenSans-Regular.eot');
+        files.should.containEql('OpenSans-Regular.svg');
+        files.should.containEql('OpenSans-Regular.ttf');
+        files.should.containEql('OpenSans-Regular.woff');
     });
 
     it('Should include SourceCodePro font files', function() {

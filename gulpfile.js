@@ -54,9 +54,12 @@ gulp.task('static', ['clean'], function() {
 
 // Copy installed fonts
 gulp.task('fonts', ['clean'], function() {
-    return gulp.src('node_modules/font-awesome/fonts/*')
-        .pipe(gzip({ append: false }))
-        .pipe(gulp.dest('build/fonts'));
+    return gulp.src([
+        'node_modules/font-awesome/fonts/*',
+        'node_modules/npm-font-open-sans/fonts/Regular/*'
+    ])
+    .pipe(gzip({ append: false }))
+    .pipe(gulp.dest('build/fonts'));
 });
 
 
