@@ -21,6 +21,7 @@
   "homepage": "https://voidjs.com",
   "dependencies": {
     "bootstrap": "^3.3.6",
+    "connect-fonts-sourcecodepro": "0.0.3",
     "del": "^2.0.2",
     "express": "^4.13.3",
     "font-awesome": "^4.5.0",

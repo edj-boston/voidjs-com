@@ -56,7 +56,8 @@ gulp.task('static', ['clean'], function() {
 gulp.task('fonts', ['clean'], function() {
     return gulp.src([
         'node_modules/font-awesome/fonts/*',
-        'node_modules/npm-font-open-sans/fonts/Regular/*'
+        'node_modules/npm-font-open-sans/fonts/Regular/*',
+        'node_modules/connect-fonts-sourcecodepro/fonts/default/sourcecodepro-regular.*'
     ])
     .pipe(gzip({ append: false }))
     .pipe(gulp.dest('build/fonts'));

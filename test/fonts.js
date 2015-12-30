@@ -35,10 +35,10 @@ describe('The build/fonts directory...', function() {
     });
 
     it('Should include SourceCodePro font files', function() {
-        files.should.containEql('SourceCodePro.eot');
-        files.should.containEql('SourceCodePro.svg');
-        files.should.containEql('SourceCodePro.ttf');
-        files.should.containEql('SourceCodePro.woff');
+        files.should.containEql('sourcecodepro-regular.eot');
+        files.should.containEql('sourcecodepro-regular.svg');
+        files.should.containEql('sourcecodepro-regular.ttf');
+        files.should.containEql('sourcecodepro-regular.woff');
     });
 
 });
