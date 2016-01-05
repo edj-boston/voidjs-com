@@ -1,25 +1,25 @@
-var argv       = require('yargs').argv,
-    concat     = require('gulp-concat'),
-    cssNano    = require('gulp-cssnano'),
-    david      = require('gulp-david'),
-    del        = require('del'),
-    eslint     = require('gulp-eslint'),
-    express    = require('express'),
-    fs         = require('fs'),
-    gulp       = require('gulp'),
-    gulpif     = require('gulp-if'),
-    gutil      = require('gulp-util'),
-    gzip       = require('gulp-gzip'),
-    hb         = require('handlebars'),
-    htmlMin    = require('gulp-htmlmin'),
-    layouts    = require('handlebars-layouts'),
-    less       = require('gulp-less'),
-    marked     = require('marked'),
-    mocha      = require('gulp-mocha'),
-    moment     = require('moment'),
-    path       = require('path'),
-    tap        = require('gulp-tap'),
-    uglify     = require('gulp-uglify');
+var argv    = require('yargs').argv,
+    concat  = require('gulp-concat'),
+    cssNano = require('gulp-cssnano'),
+    david   = require('gulp-david'),
+    del     = require('del'),
+    eslint  = require('gulp-eslint'),
+    express = require('express'),
+    fs      = require('fs'),
+    gulp    = require('gulp'),
+    gulpif  = require('gulp-if'),
+    gutil   = require('gulp-util'),
+    gzip    = require('gulp-gzip'),
+    hb      = require('handlebars'),
+    htmlMin = require('gulp-htmlmin'),
+    layouts = require('handlebars-layouts'),
+    less    = require('gulp-less'),
+    marked  = require('marked'),
+    mocha   = require('gulp-mocha'),
+    moment  = require('moment'),
+    path    = require('path'),
+    tap     = require('gulp-tap'),
+    uglify  = require('gulp-uglify');
 
 
 // Configure handlebars
@@ -168,17 +168,6 @@ gulp.task('lint', ['test'], function () {
     .pipe(eslint.format());
 });
 
-/* *
- * Build Step 6
- */
-
-// Check deps with David service
-gulp.task('deps', ['lint'], function() {
-    return gulp.src('package.json')
-        .pipe(david({ update: true }))
-        .pipe(david.reporter)
-        .pipe(gulp.dest('.'));
-});
 
 /* *
  * Helper tasks
@@ -204,21 +193,39 @@ gulp.task('serve', function(done) {
         });
 });
 
-// Watch files
-gulp.task('watch', ['build'], function() {
-    return gulp.watch('src/**', ['build']);
+
+// Check deps with David service
+gulp.task('deps', function() {
+    return gulp.src('package.json')
+        .pipe(david({ update: true }))
+        .pipe(david.reporter)
+        .pipe(gulp.dest('.'));
 });
 
-// Perform a build
+
+// Watch files
+gulp.task('watch', ['build'], function() {
+    return gulp.watch([
+        'src/**',
+        'test*'
+    ], ['build']);
+});
+
+
+// Build macro
 gulp.task('build', [
     // Step 0: clean
     // Step 1: static, fonts, scripts, styles
     // Step 2: partials
     // Step 3: views
     // Step 4: test
-    // Step 5: lint
-    'deps'
+    'lint'
 ]);
 
+
 // What to do when you run `$ gulp`
-gulp.task('default', ['watch', 'serve']);
+gulp.task('default', [
+    'watch',
+    'serve',
+    'deps'
+]);
