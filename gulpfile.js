@@ -15,11 +15,11 @@ var argv       = require('yargs').argv,
     less       = require('gulp-less'),
     marked     = require('marked'),
     minifyCSS  = require('gulp-minify-css'),
-    minifyJS   = require('gulp-uglify'),
     mocha      = require('gulp-mocha'),
     moment     = require('moment'),
     path       = require('path'),
-    tap        = require('gulp-tap');
+    tap        = require('gulp-tap'),
+    uglify     = require('gulp-uglify');
 
 
 // Configure handlebars
@@ -73,7 +73,7 @@ gulp.task('scripts', ['clean'], function() {
         'src/js/*'
     ])
     .pipe(concat('all.min.js'))
-    .pipe(minifyJS({ preserveComments: 'some' }))
+    .pipe(uglify({ preserveComments: 'some' }))
     .pipe(gzip({ append: false }))
     .pipe(gulp.dest('build/js'));
 });
