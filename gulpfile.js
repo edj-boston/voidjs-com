@@ -1,5 +1,6 @@
 var argv       = require('yargs').argv,
     concat     = require('gulp-concat'),
+    cssNano    = require('gulp-cssnano'),
     david      = require('gulp-david'),
     del        = require('del'),
     eslint     = require('gulp-eslint'),
@@ -14,7 +15,6 @@ var argv       = require('yargs').argv,
     layouts    = require('handlebars-layouts'),
     less       = require('gulp-less'),
     marked     = require('marked'),
-    minifyCSS  = require('gulp-minify-css'),
     mocha      = require('gulp-mocha'),
     moment     = require('moment'),
     path       = require('path'),
@@ -84,10 +84,10 @@ gulp.task('styles', ['clean'], function() {
     return gulp.src([
         'node_modules/bootstrap/dist/css/bootstrap.css',
         'node_modules/font-awesome/css/font-awesome.css',
-        'src/less/*'
+        'src/less/custom.less'
     ])
     .pipe(gulpif(/[.]less$/, less()))
-    .pipe(minifyCSS())
+    .pipe(cssNano())
     .pipe(concat('all.min.css'))
     .pipe(gzip({ append: false }))
     .pipe(gulp.dest('build/css'));
@@ -173,7 +173,7 @@ gulp.task('lint', ['test'], function () {
  */
 
 // Check deps with David service
-gulp.task('deps', function() {
+gulp.task('deps', ['lint'], function() {
     return gulp.src('package.json')
         .pipe(david({ update: true }))
         .pipe(david.reporter)
