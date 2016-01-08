@@ -30,8 +30,3 @@ $ gulp -p 3001
 
 
 Editing files in the `src` directory will automatically trigger a rebuild. Check terminal output for errors and restart as necessary.
-
-To do
------
-
-* Gulp David
