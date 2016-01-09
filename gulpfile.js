@@ -1,25 +1,14 @@
 var argv    = require('yargs').argv,
-    concat  = require('gulp-concat'),
-    cssNano = require('gulp-cssnano'),
-    david   = require('gulp-david'),
     del     = require('del'),
-    eslint  = require('gulp-eslint'),
     express = require('express'),
     fs      = require('fs'),
+    g       = require('gulp-load-plugins')(),
     gulp    = require('gulp'),
-    gulpif  = require('gulp-if'),
-    gutil   = require('gulp-util'),
-    gzip    = require('gulp-gzip'),
     hb      = require('handlebars'),
-    htmlMin = require('gulp-htmlmin'),
     layouts = require('handlebars-layouts'),
-    less    = require('gulp-less'),
     marked  = require('marked'),
-    mocha   = require('gulp-mocha'),
     moment  = require('moment'),
-    path    = require('path'),
-    tap     = require('gulp-tap'),
-    uglify  = require('gulp-uglify');
+    path    = require('path');
 
 
 // Configure handlebars
@@ -44,11 +33,11 @@ gulp.task('clean', function(done) {
 // Catchall to copy static files to build
 gulp.task('static', ['clean'], function() {
     return gulp.src('src/static/**')
-        .pipe(gulpif(/robots\.txt/, tap(function(file) {
+        .pipe(g.if(/robots\.txt/, g.tap(function(file) {
             if ( process.env.TRAVIS_BRANCH == 'master' )
                 file.contents = new Buffer('');
         })))
-        .pipe(gzip({ append: false }))
+        .pipe(g.gzip({ append: false }))
         .pipe(gulp.dest('build'));
 });
 
@@ -60,7 +49,7 @@ gulp.task('fonts', ['clean'], function() {
         'node_modules/npm-font-open-sans/fonts/Regular/*',
         'node_modules/connect-fonts-sourcecodepro/fonts/default/sourcecodepro-regular.*'
     ])
-    .pipe(gzip({ append: false }))
+    .pipe(g.gzip({ append: false }))
     .pipe(gulp.dest('build/fonts'));
 });
 
@@ -72,9 +61,9 @@ gulp.task('scripts', ['clean'], function() {
         'node_modules/bootstrap/dist/js/bootstrap.js',
         'src/js/*'
     ])
-    .pipe(concat('all.min.js'))
-    .pipe(uglify({ preserveComments: 'some' }))
-    .pipe(gzip({ append: false }))
+    .pipe(g.concat('all.min.js'))
+    .pipe(g.uglify({ preserveComments: 'some' }))
+    .pipe(g.gzip({ append: false }))
     .pipe(gulp.dest('build/js'));
 });
 
@@ -86,10 +75,10 @@ gulp.task('styles', ['clean'], function() {
         'node_modules/font-awesome/css/font-awesome.css',
         'src/less/custom.less'
     ])
-    .pipe(gulpif(/[.]less$/, less()))
-    .pipe(cssNano())
-    .pipe(concat('all.min.css'))
-    .pipe(gzip({ append: false }))
+    .pipe(g.if(/[.]less$/, g.less()))
+    .pipe(g.cssnano())
+    .pipe(g.concat('all.min.css'))
+    .pipe(g.gzip({ append: false }))
     .pipe(gulp.dest('build/css'));
 });
 
@@ -101,7 +90,7 @@ gulp.task('styles', ['clean'], function() {
 // Register partials
 gulp.task('partials', ['static', 'fonts', 'scripts', 'styles'], function() {
     return gulp.src('src/views/partials/*.html')
-        .pipe(tap(function(file) {
+        .pipe(g.tap(function(file) {
             hb.registerPartial(path.parse(file.path).name, file.contents.toString());
         }));
 });
@@ -126,12 +115,12 @@ gulp.task('views', ['partials'], function(done) {
             };
 
             gulp.src('src/views/*.html')
-                .pipe(tap(function(file) {
+                .pipe(g.tap(function(file) {
                     var template = hb.compile(file.contents.toString());
                     file.contents = new Buffer(template(data));
                 }))
-                .pipe(htmlMin({ collapseWhitespace: true }))
-                .pipe(gzip({ append: false }))
+                .pipe(g.htmlmin({ collapseWhitespace: true }))
+                .pipe(g.gzip({ append: false }))
                 .pipe(gulp.dest('build'))
                 .on('end', done);
         });
@@ -146,7 +135,7 @@ gulp.task('views', ['partials'], function(done) {
 // Run tests
 gulp.task('test', ['views'], function() {
     return gulp.src('test/*')
-        .pipe(mocha({
+        .pipe(g.mocha({
             require : ['should']
         }));
 });
@@ -164,8 +153,8 @@ gulp.task('lint', ['test'], function () {
         'test/*.js',
         '!node_modules/**'
     ])
-    .pipe(eslint())
-    .pipe(eslint.format());
+    .pipe(g.eslint())
+    .pipe(g.eslint.format());
 });
 
 
@@ -188,7 +177,7 @@ gulp.task('serve', function(done) {
                 .sendFile(__dirname + '/build/error.html');
         })
         .listen(port, function() {
-            gutil.log('Server listening on port', port);
+            g.util.log('Server listening on port', port);
             done();
         });
 });
@@ -197,8 +186,8 @@ gulp.task('serve', function(done) {
 // Check deps with David service
 gulp.task('deps', function() {
     return gulp.src('package.json')
-        .pipe(david({ update: true }))
-        .pipe(david.reporter)
+        .pipe(g.david({ update: true }))
+        .pipe(g.david.reporter)
         .pipe(gulp.dest('.'));
 });
 
