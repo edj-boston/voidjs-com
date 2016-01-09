@@ -6,21 +6,22 @@ The [site](https://voidjs.com) of the [Void](https://github.com/edj-boston/void)
 Install
 -------
 
+Clone the repo, `cd` to it, install gulp globally, then install the rest of the dependencies.
+
 ```sh
+$ cd voidjs-com
+$ npm install -g gulp
 $ npm install
 ```
 
 Run
 ---
 
-Navigate to the git repo director and run the default `gulp` task:
+Run the default `gulp` task:
 
 ```sh
-$ cd voidjs-com
 $ gulp
 ```
-
-Then navigate to `http://localhost:3000` in your browser. 
 
 Optionally pass a port for the local server to bind to and listen on.
 
@@ -28,5 +29,6 @@ Optionally pass a port for the local server to bind to and listen on.
 $ gulp -p 3001
 ```
 
-
 Editing files in the `src` directory will automatically trigger a rebuild. Check terminal output for errors and restart as necessary.
+
+Then navigate to `http://localhost:3000` in your browser.
