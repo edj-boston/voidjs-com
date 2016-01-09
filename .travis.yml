@@ -2,9 +2,7 @@ sudo: false
 language: node_js
 node_js:
 - '5'
-- '4.2'
-- '4.1'
-- '4.0'
+- '4'
 env:
   global:
   - secure: HAD8/BquRmsmcWYu4whHSyNo0mRfpVmuaqkR2m2ymXxJWvkIcs48/tqau54QBjfTP2WRD5s3QjpYtx2g3lIYAXUS7lpSr49kv7ZLy8+bzWH9+/l6faWZcxeC1pcxoHbdavnkmLqdbAkZaOOXM+qD0OYZAlHWcClmR8zjoaEMemY=
@@ -20,7 +18,7 @@ deploy:
   bucket: voidjs-com
   on:
     branch: master
-    node_js: '4.2'
+    node_js: '4'
 - provider: s3
   region: us-west-2
   access_key_id: $AWS_ACCESS_KEY_ID
@@ -31,4 +29,4 @@ deploy:
   bucket: stage-voidjs-com
   on:
     branch: develop
-    node_js: '4.2'
+    node_js: '4'
