@@ -130,7 +130,7 @@ gulp.task('views', ['partials'], function(done) {
                     var template = hb.compile(file.contents.toString());
                     file.contents = new Buffer(template(data));
                 }))
-                .pipe(htmlMin())
+                .pipe(htmlMin({ collapseWhitespace: true }))
                 .pipe(gzip({ append: false }))
                 .pipe(gulp.dest('build'))
                 .on('end', done);
