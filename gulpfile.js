@@ -20,7 +20,7 @@ layouts.register(hb);
  */
 
 // Clean the build dir
-gulp.task('clean', function(done) {
+gulp.task('clean', (done) => {
     del(['build/**', '!build'])
         .then(done());
 });
@@ -31,9 +31,9 @@ gulp.task('clean', function(done) {
  */
 
 // Catchall to copy static files to build
-gulp.task('static', ['clean'], function() {
+gulp.task('static', ['clean'], () => {
     return gulp.src('src/static/**')
-        .pipe(g.if(/robots\.txt/, g.tap(function(file) {
+        .pipe(g.if(/robots\.txt/, g.tap((file) => {
             if ( process.env.TRAVIS_BRANCH == 'master' )
                 file.contents = new Buffer('');
         })))
@@ -43,7 +43,7 @@ gulp.task('static', ['clean'], function() {
 
 
 // Copy installed fonts
-gulp.task('fonts', ['clean'], function() {
+gulp.task('fonts', ['clean'], () => {
     return gulp.src([
         'node_modules/font-awesome/fonts/*',
         'node_modules/npm-font-open-sans/fonts/Regular/*',
@@ -55,7 +55,7 @@ gulp.task('fonts', ['clean'], function() {
 
 
 // Minify and combine all JavaScript
-gulp.task('scripts', ['clean'], function() {
+gulp.task('scripts', ['clean'], () => {
     return gulp.src([
         'node_modules/jquery/dist/jquery.js',
         'node_modules/bootstrap/dist/js/bootstrap.js',
@@ -69,7 +69,7 @@ gulp.task('scripts', ['clean'], function() {
 
 
 // Minify and combine all CSS
-gulp.task('styles', ['clean'], function() {
+gulp.task('styles', ['clean'], () => {
     return gulp.src([
         'node_modules/bootstrap/dist/css/bootstrap.css',
         'node_modules/font-awesome/css/font-awesome.css',
@@ -88,9 +88,9 @@ gulp.task('styles', ['clean'], function() {
  */
 
 // Register partials
-gulp.task('partials', ['static', 'fonts', 'scripts', 'styles'], function() {
+gulp.task('partials', ['static', 'fonts', 'scripts', 'styles'], () => {
     return gulp.src('src/views/partials/*.html')
-        .pipe(g.tap(function(file) {
+        .pipe(g.tap((file) => {
             hb.registerPartial(path.parse(file.path).name, file.contents.toString());
         }));
 });
@@ -101,10 +101,10 @@ gulp.task('partials', ['static', 'fonts', 'scripts', 'styles'], function() {
  */
 
 // Compile HB template
-gulp.task('views', ['partials'], function(done) {
-    fs.readFile('./node_modules/void/README.md', 'utf-8', function(err, readme) {
+gulp.task('views', ['partials'], (done) => {
+    fs.readFile('./node_modules/void/README.md', 'utf-8', (err, readme) => {
         if (err) throw err;
-        fs.readFile('./node_modules/void/package.json', 'utf-8', function(err, pkg) {
+        fs.readFile('./node_modules/void/package.json', 'utf-8', (err, pkg) => {
             if (err) throw err;
 
             var data = {
@@ -115,7 +115,7 @@ gulp.task('views', ['partials'], function(done) {
             };
 
             gulp.src('src/views/*.html')
-                .pipe(g.tap(function(file) {
+                .pipe(g.tap((file) => {
                     var template = hb.compile(file.contents.toString());
                     file.contents = new Buffer(template(data));
                 }))
@@ -133,7 +133,7 @@ gulp.task('views', ['partials'], function(done) {
  */
 
 // Run tests
-gulp.task('test', ['views'], function() {
+gulp.task('test', ['views'], () => {
     return gulp.src('test/*')
         .pipe(g.mocha({
             require : ['should']
@@ -146,7 +146,7 @@ gulp.task('test', ['views'], function() {
  */
 
 // Lint as JS files (including this one)
-gulp.task('lint', ['test'], function () {
+gulp.task('lint', ['test'], () => {
     return gulp.src([
         'src/js/*.js',
         'gulpfile.js',
@@ -163,20 +163,20 @@ gulp.task('lint', ['test'], function () {
  */
 
 // Serve built files
-gulp.task('serve', function(done) {
+gulp.task('serve', (done) => {
     var port = argv.p || 3000;
 
     express()
-        .use(function(req, res, next) {
+        .use((req, res, next) => {
             res.header('Content-Encoding', 'gzip');
             next();
         })
         .use(express.static('build'))
-        .use(function(req, res) {
+        .use((req, res) => {
             res.status(404)
                 .sendFile(__dirname + '/build/error.html');
         })
-        .listen(port, function() {
+        .listen(port, () => {
             g.util.log('Server listening on port', port);
             done();
         });
@@ -184,7 +184,7 @@ gulp.task('serve', function(done) {
 
 
 // Check deps with David service
-gulp.task('deps', function() {
+gulp.task('deps', () => {
     return gulp.src('package.json')
         .pipe(g.david({ update: true }))
         .pipe(g.david.reporter)
@@ -193,7 +193,7 @@ gulp.task('deps', function() {
 
 
 // Watch files
-gulp.task('watch', ['build'], function() {
+gulp.task('watch', ['build'], () => {
     return gulp.watch([
         'src/**',
         'test*'
