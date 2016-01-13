@@ -7,6 +7,7 @@ env:
   global:
   - secure: HAD8/BquRmsmcWYu4whHSyNo0mRfpVmuaqkR2m2ymXxJWvkIcs48/tqau54QBjfTP2WRD5s3QjpYtx2g3lIYAXUS7lpSr49kv7ZLy8+bzWH9+/l6faWZcxeC1pcxoHbdavnkmLqdbAkZaOOXM+qD0OYZAlHWcClmR8zjoaEMemY=
   - secure: MbDYeyrfmrt2PVxdT6j+Q3+mY2McQ/MW/1oiq4mEyHZuub9DKxKXahM5LYhQUekCxGt1EvYf5KUhjmyyuAmuohWk3TDlO1I8BrjLe2K6qhty4OAim3tMyV+FX1ZkxWO2l5OWIfzcEM/nUwR2ZSJgt7rNcBpopvPuLJBd9f39HOI=
+script: gulp build
 deploy:
 - provider: s3
   region: us-west-2
