@@ -194,10 +194,15 @@ gulp.task('deps', () => {
 
 // Watch files
 gulp.task('watch', () => {
-    gulp.watch([
-        'src/**',
-        'test*'
-    ], ['build']);
+    var globs = [
+        'src/**/*',
+        'test/*'
+    ];
+
+    gulp.watch(globs, ['build'])
+        .on('change', (e) => {
+            g.util.log('File', e.type, e.path);
+        });
 });
 
 
@@ -219,6 +224,7 @@ gulp.task('default', (done) => {
     g.sequence(
         'watch',
         'serve',
-        'deps'
+        'deps',
+        'build'
     )(done);
 });
