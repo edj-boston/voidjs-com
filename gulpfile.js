@@ -33,7 +33,7 @@ gulp.task('clean', (done) => {
 // Catchall to copy static files to build
 gulp.task('static', () => {
     return gulp.src('src/static/**')
-        .pipe(g.if(/robots\.txt/, g.tap((file) => {
+        .pipe(g.if('robots.txt', g.tap((file) => {
             if ( process.env.TRAVIS_BRANCH == 'master' )
                 file.contents = new Buffer('');
         })))
