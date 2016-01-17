@@ -1,25 +1,17 @@
-var fs   = require('fs'),
-    zlib = require('zlib');
+'use strict';
+
+var fs = require('fs');
 
 
 describe('The dynamically concatenated and minified CSS...', () => {
 
     var handle = 'build/css/all.min.css';
-    var buf = null;
-    var str = '';
+    var str;
 
     it('Should exist', (done) => {
         fs.readFile(handle, (err, data) => {
             if (err) throw err;
-            buf = data;
-            done();
-        });
-    });
-
-    it('Should be gzipped', (done) => {
-        zlib.gunzip(buf, (err, data) => {
-            if (err) throw err;
-            str = data;
+            str = data.toString();
             done();
         });
     });

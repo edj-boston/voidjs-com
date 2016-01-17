@@ -1,7 +1,8 @@
+'use strict';
+
 var jsdom  = require('jsdom').jsdom,
     fs     = require('fs'),
-    moment = require('moment'),
-    zlib   = require('zlib');
+    moment = require('moment');
 
 
 // Helper to instantiate JSDom
@@ -15,18 +16,10 @@ function loadDocument(data) {
 describe('The dynamically generated HTML index file...', () => {
 
     var handle = 'build/index.html';
-    var buf, document;
+    var document;
 
     it('Should exist', (done) => {
         fs.readFile(handle, (err, data) => {
-            if (err) throw err;
-            buf = data;
-            done();
-        });
-    });
-
-    it('Should be gzipped', (done) => {
-        zlib.gunzip(buf, (err, data) => {
             if (err) throw err;
             document = loadDocument(data);
             done();

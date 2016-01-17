@@ -9,25 +9,15 @@ env:
   - secure: MbDYeyrfmrt2PVxdT6j+Q3+mY2McQ/MW/1oiq4mEyHZuub9DKxKXahM5LYhQUekCxGt1EvYf5KUhjmyyuAmuohWk3TDlO1I8BrjLe2K6qhty4OAim3tMyV+FX1ZkxWO2l5OWIfzcEM/nUwR2ZSJgt7rNcBpopvPuLJBd9f39HOI=
 script: gulp build
 deploy:
-- provider: s3
-  region: us-west-2
-  access_key_id: $AWS_ACCESS_KEY_ID
-  secret_access_key: $AWS_SECRET_ACCESS_KEY
-  detect_encoding: true
-  local_dir: build
+- provider: script
+  script: gulp deploy -b voidjs-com
   skip_cleanup: true
-  bucket: voidjs-com
   on:
     branch: master
     node_js: '4'
-- provider: s3
-  region: us-west-2
-  access_key_id: $AWS_ACCESS_KEY_ID
-  secret_access_key: $AWS_SECRET_ACCESS_KEY
-  detect_encoding: true
-  local_dir: build
+- provider: script
+  script: gulp deploy -b stage-voidjs-com
   skip_cleanup: true
-  bucket: stage-voidjs-com
   on:
     branch: develop
     node_js: '4'
