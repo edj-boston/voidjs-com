@@ -1,8 +1,8 @@
 'use strict';
 
-let jsdom  = require('jsdom').jsdom,
-    fs     = require('fs'),
-    moment = require('moment');
+const jsdom  = require('jsdom').jsdom,
+    fs       = require('fs'),
+    moment   = require('moment');
 
 
 // Helper to instantiate JSDom
@@ -17,7 +17,7 @@ describe('The dynamically generated HTML index file...', () => {
 
     let document;
 
-    it('Should exist', (done) => {
+    it('Should exist', done => {
         fs.readFile('build/index.html', (err, data) => {
             if (err) throw err;
             document = loadDocument(data);

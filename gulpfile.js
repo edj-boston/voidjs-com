@@ -1,6 +1,6 @@
 'use strict';
 
-let argv    = require('yargs').argv,
+const argv  = require('yargs').argv,
     del     = require('del'),
     express = require('express'),
     fs      = require('fs'),
@@ -10,7 +10,8 @@ let argv    = require('yargs').argv,
     layouts = require('handlebars-layouts'),
     marked  = require('marked'),
     moment  = require('moment'),
-    path    = require('path');
+    path    = require('path'),
+    rules   = require('eslint-rules-es2015');
 
 
 // Configure handlebars
@@ -37,7 +38,7 @@ gulp.task('clean', () => {
 // Catchall to copy static files to build
 gulp.task('static', () => {
     return gulp.src('src/static/**')
-        .pipe(g.if('robots.txt', g.tap((file) => {
+        .pipe(g.if('robots.txt', g.tap(file => {
             if ( process.env.TRAVIS_BRANCH == 'master' )
                 file.contents = new Buffer('');
         })))
@@ -76,7 +77,7 @@ gulp.task('styles', () => {
         'node_modules/font-awesome/css/font-awesome.css',
         'src/less/custom.less'
     ])
-    .pipe(g.if(/[.]less$/, g.less()))
+    .pipe(g.if('*.less', g.less()))
     .pipe(g.cssnano())
     .pipe(g.concat('all.min.css'))
     .pipe(gulp.dest('build/css'));
@@ -90,7 +91,7 @@ gulp.task('styles', () => {
 // Register partials
 gulp.task('partials', () => {
     return gulp.src('src/views/partials/*.html')
-        .pipe(g.tap((file) => {
+        .pipe(g.tap(file => {
             hb.registerPartial(path.parse(file.path).name, file.contents.toString());
         }));
 });
@@ -101,13 +102,13 @@ gulp.task('partials', () => {
  */
 
 // Compile HB template
-gulp.task('views', (done) => {
+gulp.task('views', done => {
     fs.readFile('./node_modules/void/README.md', 'utf-8', (err, readme) => {
         if (err) throw err;
         fs.readFile('./node_modules/void/package.json', 'utf-8', (err, pkg) => {
             if (err) throw err;
 
-            let data = {
+            const data = {
                 year      : moment().format('YYYY'),
                 timestamp : moment().format('YYYY-MM-DD-HH-mm-ss'),
                 readme    : marked(readme),
@@ -115,8 +116,8 @@ gulp.task('views', (done) => {
             };
 
             gulp.src('src/views/*.html')
-                .pipe(g.tap((file) => {
-                    let template = hb.compile(file.contents.toString());
+                .pipe(g.tap(file => {
+                    const template = hb.compile(file.contents.toString());
                     file.contents = new Buffer(template(data));
                 }))
                 .pipe(g.htmlmin({ collapseWhitespace: true }))
@@ -152,7 +153,7 @@ gulp.task('lint', () => {
         'test/*.js',
         '!node_modules/**'
     ])
-    .pipe(g.eslint())
+    .pipe(g.eslint({ rules }))
     .pipe(g.eslint.format());
 });
 
@@ -162,8 +163,8 @@ gulp.task('lint', () => {
  */
 
 // Serve built files
-gulp.task('serve', (done) => {
-    let port = argv.p || 3000;
+gulp.task('serve', done => {
+    const port = argv.p || 3000;
 
     express()
         .use(express.static('build'))
@@ -189,20 +190,20 @@ gulp.task('deps', () => {
 
 // Watch files
 gulp.task('watch', () => {
-    let globs = [
+    const globs = [
         'src/**/*',
         'test/*'
     ];
 
     gulp.watch(globs, ['build'])
-        .on('change', (e) => {
+        .on('change', e => {
             g.util.log('File', e.type, e.path);
         });
 });
 
 
 // Build macro
-gulp.task('build', (done) => {
+gulp.task('build', done => {
     g.sequence(
         'clean',
         ['static', 'fonts', 'scripts', 'styles'],
@@ -216,7 +217,7 @@ gulp.task('build', (done) => {
 
 // Deploy to AWS S3
 gulp.task('deploy', () => {
-    let publisher = g.awspublish.create({
+    const publisher = g.awspublish.create({
         accessKeyId     : process.env.AWS_ACCESS_KEY_ID,
         secretAccessKey : process.env.AWS_SECRET_ACCESS_KEY,
         region          : 'us-west-2',
@@ -249,7 +250,7 @@ gulp.task('package', g.depcheck({
 
 
 // What to do when you run `$ gulp`
-gulp.task('default', (done) => {
+gulp.task('default', done => {
     g.sequence(
         'deps',
         'package',
