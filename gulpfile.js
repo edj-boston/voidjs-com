@@ -23,7 +23,10 @@ layouts.register(hb);
 
 // Clean the build dir
 gulp.task('clean', (done) => {
-    del('build').then(done());
+    return del([
+        'build/**',
+        '!build'
+    ]);
 });
 
 
