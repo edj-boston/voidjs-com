@@ -1,6 +1,6 @@
 'use strict';
 
-var argv    = require('yargs').argv,
+let argv    = require('yargs').argv,
     del     = require('del'),
     express = require('express'),
     fs      = require('fs'),
@@ -22,7 +22,7 @@ layouts.register(hb);
  */
 
 // Clean the build dir
-gulp.task('clean', (done) => {
+gulp.task('clean', () => {
     return del([
         'build/**',
         '!build'
@@ -107,7 +107,7 @@ gulp.task('views', (done) => {
         fs.readFile('./node_modules/void/package.json', 'utf-8', (err, pkg) => {
             if (err) throw err;
 
-            var data = {
+            let data = {
                 year      : moment().format('YYYY'),
                 timestamp : moment().format('YYYY-MM-DD-HH-mm-ss'),
                 readme    : marked(readme),
@@ -116,7 +116,7 @@ gulp.task('views', (done) => {
 
             gulp.src('src/views/*.html')
                 .pipe(g.tap((file) => {
-                    var template = hb.compile(file.contents.toString());
+                    let template = hb.compile(file.contents.toString());
                     file.contents = new Buffer(template(data));
                 }))
                 .pipe(g.htmlmin({ collapseWhitespace: true }))
@@ -163,7 +163,7 @@ gulp.task('lint', () => {
 
 // Serve built files
 gulp.task('serve', (done) => {
-    var port = argv.p || 3000;
+    let port = argv.p || 3000;
 
     express()
         .use(express.static('build'))
@@ -189,7 +189,7 @@ gulp.task('deps', () => {
 
 // Watch files
 gulp.task('watch', () => {
-    var globs = [
+    let globs = [
         'src/**/*',
         'test/*'
     ];
@@ -216,7 +216,7 @@ gulp.task('build', (done) => {
 
 // Deploy to AWS S3
 gulp.task('deploy', () => {
-    var publisher = g.awspublish.create({
+    let publisher = g.awspublish.create({
         accessKeyId     : process.env.AWS_ACCESS_KEY_ID,
         secretAccessKey : process.env.AWS_SECRET_ACCESS_KEY,
         region          : 'us-west-2',

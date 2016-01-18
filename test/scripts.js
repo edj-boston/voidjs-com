@@ -1,15 +1,14 @@
 'use strict';
 
-var fs = require('fs');
+let fs = require('fs');
 
 
 describe('The dynamically concatenated and minified JS...', () => {
 
-    var handle = 'build/js/all.min.js';
-    var str;
+    let str;
 
     it('Should exist', (done) => {
-        fs.readFile(handle, (err, data) => {
+        fs.readFile('build/js/all.min.js', (err, data) => {
             if (err) throw err;
             str = data.toString();
             done();

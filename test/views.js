@@ -1,6 +1,6 @@
 'use strict';
 
-var jsdom  = require('jsdom').jsdom,
+let jsdom  = require('jsdom').jsdom,
     fs     = require('fs'),
     moment = require('moment');
 
@@ -15,11 +15,10 @@ function loadDocument(data) {
 
 describe('The dynamically generated HTML index file...', () => {
 
-    var handle = 'build/index.html';
-    var document;
+    let document;
 
     it('Should exist', (done) => {
-        fs.readFile(handle, (err, data) => {
+        fs.readFile('build/index.html', (err, data) => {
             if (err) throw err;
             document = loadDocument(data);
             done();
