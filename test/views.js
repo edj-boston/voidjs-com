@@ -1,20 +1,21 @@
 'use strict';
 
-const jsdom  = require('jsdom').jsdom,
-    fs       = require('fs'),
-    moment   = require('moment');
+const argv = require('yargs').argv,
+    fs     = require('fs'),
+    jsdom  = require('jsdom').jsdom,
+    moment = require('moment');
 
 
 // Helper to instantiate JSDom
-function loadDocument(data) {
+function loadDocument (data) {
+    const port = argv.p || 3000;
     return jsdom(data.toString(), {
-        url : 'http://localhost:3000/'
+        url : `http://localhost:${port}/`
     }).defaultView.document;
 }
 
 
 describe('The dynamically generated HTML index file...', () => {
-
     let document;
 
     it('Should exist', done => {
@@ -39,5 +40,4 @@ describe('The dynamically generated HTML index file...', () => {
         document.getElementById('copyright').innerHTML
             .should.containEql(moment().format('YYYY'));
     });
-
 });

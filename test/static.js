@@ -4,10 +4,9 @@ const fs = require('fs');
 
 
 describe('The assets copied from the src/static directory...', () => {
-
     it('Should include a favicon file', done => {
         fs.stat('build/favicon.ico', err => {
-            if ( err) throw err;
+            if (err) throw err;
             done();
         });
     });
@@ -18,5 +17,4 @@ describe('The assets copied from the src/static directory...', () => {
             done();
         });
     });
-
 });

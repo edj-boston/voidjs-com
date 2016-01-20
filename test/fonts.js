@@ -4,8 +4,7 @@ const fs = require('fs');
 
 
 describe('The build/fonts directory...', () => {
-
-    let files = [];
+    let files;
 
     before(done => {
         fs.readdir('build/fonts/', (err, arr) => {
@@ -42,5 +41,4 @@ describe('The build/fonts directory...', () => {
         files.should.containEql('sourcecodepro-regular.ttf');
         files.should.containEql('sourcecodepro-regular.woff');
     });
-
 });
