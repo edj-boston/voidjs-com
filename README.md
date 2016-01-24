@@ -34,3 +34,11 @@ $ gulp -p 3001
 Editing files in the `src` directory will automatically trigger a build.
 
 Then navigate to `http://localhost:3000` in your browser.
+
+To Do
+-----
+
+* More tests
+* Upgrade to Bootstrap 4
+* Upgrade to Gulp 4
+* Redesign
