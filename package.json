@@ -1,6 +1,7 @@
 {
   "name": "voidjs-com",
-  "version": "0.0.1",
+  "private": true,
+  "version": "1.0.0",
   "description": "The site of the Void NodeJS module",
   "main": "gulpfile.js",
   "scripts": {
