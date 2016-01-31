@@ -159,7 +159,6 @@ gulp.task('serve', done => {
 gulp.task('deps', () => {
     return gulp.src('package.json')
         .pipe(g.david({ update : true }))
-        .pipe(g.david.reporter)
         .pipe(gulp.dest('.'));
 });
 
