@@ -73,7 +73,7 @@ gulp.task('styles', () => {
         'node_modules/font-awesome/css/font-awesome.css',
         'src/less/custom.less'
     ])
-    .pipe(g.sourcemaps.init())
+    .pipe(g.sourcemaps.init({ loadMaps : true }))
     .pipe(g.if('*.less', g.less()))
     .pipe(g.cssnano())
     .pipe(g.concat('all.min.css'))
