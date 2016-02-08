@@ -132,7 +132,7 @@ gulp.task('test', () => {
 
 
 // Lint as JS files (including this one)
-gulp.task('lint', () => {
+gulp.task('lint-js', () => {
     return gulp.src([
         'src/js/*.js',
         'gulpfile.js',
@@ -146,6 +146,19 @@ gulp.task('lint', () => {
         rules
     }))
     .pipe(g.eslint.format());
+});
+
+
+// Lint all LESS files
+gulp.task('lint-less', () => {
+    return gulp.src('src/less/custom.less')
+        .pipe(g.sourcemaps.init())
+        .pipe(g.less())
+        .pipe(g.csslint({
+            'qualified-headings' : false,
+            'unique-headings'    : false
+        }))
+        .pipe(g.csslintLessReporter());
 });
 
 
@@ -195,7 +208,7 @@ gulp.task('build', done => {
         [ 'static', 'fonts', 'scripts', 'styles', 'partials' ],
         'views',
         'test',
-        'lint'
+        [ 'lint-js', 'lint-less' ]
     )(done);
 });
 
