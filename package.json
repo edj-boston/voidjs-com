@@ -12,7 +12,13 @@
     "url": "https://github.com/edj-boston/voidjs-com"
   },
   "keywords": [
-    "void"
+    "void",
+    "voidjs",
+    "voidjs.com",
+    "cloudfront",
+    "aws",
+    "cache",
+    "invalidation"
   ],
   "author": "Eric Johnson <edj.boston@gmail.com>",
   "license": "MIT",
