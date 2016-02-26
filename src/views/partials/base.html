@@ -9,6 +9,12 @@
         <link href="/favicon.ico" rel="shortcut icon">
     </head>
     <body class="{{bodyClass}}" data-spy="scroll" data-target=".navbar">
+        {{#if env}}
+            <div class="env-badge {{env}}">
+                <span>{{env}}</span>
+            </div>
+        {{/if}}
+
         {{#block "body"}}{{/block}}
         <script src="/js/all.min.js?{{timestamp}}"></script>
     </body>

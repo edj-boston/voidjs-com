@@ -5,6 +5,9 @@
 /* Color vars */
 @purple-light:#4f3b5b;
 @purple-dark:#231733;
+@yellow: #f1df3a;
+@purple: #7262B4;
+@blue: #3c94e3;
 
 /* Fonts */
 @import 'fonts.less';
@@ -21,6 +24,13 @@ a { color:#660099;
 .bar { background:#eee; }
 
 /* Header */
+.env-badge { position:fixed; width:200px; margin-left:-100px; left:50%; z-index:1000; box-shadow:0 1px 4px 0 rgba(0, 0, 0, 0.5); text-align:center; opacity:0.5; background-color: @yellow;
+  &.local { background-color: @purple; }
+  &.develop { background-color: @blue; }
+
+  span { color:#fff; text-transform:uppercase; }
+}
+
 header {
     background:@purple-light;
     background:-webkit-gradient(radial, center center, 0px, center center, 100%, from(@purple-light), to(@purple-dark));
