@@ -244,6 +244,7 @@ gulp.task('package', g.depcheck({
         'connect-fonts-sourcecodepro',
         'font-awesome',
         'gulp-*',
+        'mocha',
         'jquery',
         'npm-font-open-sans',
         'should',
