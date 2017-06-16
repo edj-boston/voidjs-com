@@ -41,48 +41,54 @@ gulp.task('static', () => {
 
 // Copy installed fonts
 gulp.task('fonts', () => {
-    return gulp.src([
+    const globs = [
         'node_modules/font-awesome/fonts/*',
         'node_modules/npm-font-open-sans/fonts/Regular/*',
         'node_modules/connect-fonts-sourcecodepro/fonts/default/sourcecodepro-regular.*'
-    ])
-    .pipe(gulp.dest('build/fonts'));
+    ];
+
+    return gulp.src(globs)
+        .pipe(gulp.dest('build/fonts'));
 });
 
 
 // Minify and combine all JavaScript
 gulp.task('scripts', () => {
-    return gulp.src([
+    const globs = [
         'node_modules/jquery/dist/jquery.js',
         'node_modules/bootstrap/dist/js/bootstrap.js',
         'src/js/*.js'
-    ])
-    .pipe(g.sourcemaps.init({ loadMaps : true }))
-    .pipe(g.babel({
-        presets  : [ 'es2015' ],
-        comments : true,
-        compact  : false
-    }))
-    .pipe(g.concat('all.min.js'))
-    .pipe(g.uglify({ preserveComments : 'some' }))
-    .pipe(g.sourcemaps.write('.'))
-    .pipe(gulp.dest('build/js'));
+    ];
+
+    return gulp.src(globs)
+        .pipe(g.sourcemaps.init({ loadMaps : true }))
+        .pipe(g.babel({
+            presets  : [ 'es2015' ],
+            comments : true,
+            compact  : false
+        }))
+        .pipe(g.concat('all.min.js'))
+        .pipe(g.uglify({ preserveComments : 'some' }))
+        .pipe(g.sourcemaps.write('.'))
+        .pipe(gulp.dest('build/js'));
 });
 
 
 // Minify and combine all CSS
 gulp.task('styles', () => {
-    return gulp.src([
+    const globs = [
         'node_modules/bootstrap/dist/css/bootstrap.css',
         'node_modules/font-awesome/css/font-awesome.css',
         'src/less/custom.less'
-    ])
-    .pipe(g.sourcemaps.init({ loadMaps : true }))
-    .pipe(g.if('*.less', g.less()))
-    .pipe(g.cssnano())
-    .pipe(g.concat('all.min.css'))
-    .pipe(g.sourcemaps.write('.'))
-    .pipe(gulp.dest('build/css'));
+    ];
+
+    return gulp.src(globs)
+        .pipe(g.sourcemaps.init({ loadMaps : true }))
+        .pipe(g.if('*.less', g.less()))
+        .pipe(g.cssnano())
+        .pipe(g.concat('all.min.css'))
+        .pipe(g.sourcemaps.write('.'))
+        .pipe(gulp.dest('build/css'));
 });
 
 
@@ -139,18 +145,20 @@ gulp.task('test', () => {
 
 // Lint as JS files (including this one)
 gulp.task('lint-js', () => {
-    return gulp.src([
+    const globs = [
         'src/js/*.js',
         'gulpfile.js',
         'test/*.js',
         '!node_modules/**'
-    ])
-    .pipe(g.eslint({
-        extends       : 'eslint:recommended',
-        parserOptions : { 'ecmaVersion' : 6 },
-        rules
-    }))
-    .pipe(g.eslint.format());
+    ];
+
+    return gulp.src(globs)
+        .pipe(g.eslint({
+            extends       : 'eslint:recommended',
+            parserOptions : { 'ecmaVersion' : 6 },
+            rules
+        }))
+        .pipe(g.eslint.format());
 });
 
 
