@@ -63,7 +63,7 @@
     "mocha": "^2.3.3",
     "moment": "^2.10.6",
     "npm-font-open-sans": "0.0.3",
-    "should": "^8.0.2",
+    "should": "^11.2.1",
     "void": "^1.0.0",
     "yargs": "^4.1.0"
   }
