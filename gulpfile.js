@@ -146,9 +146,8 @@ gulp.task('lint-js', () => {
         '!node_modules/**'
     ])
     .pipe(g.eslint({
-        extends : 'eslint:recommended',
-        env     : { node : true, es6 : true, mocha : true },
-        globals : { $ : true, window : true, document : true, ga : true },
+        extends       : 'eslint:recommended',
+        parserOptions : { 'ecmaVersion' : 6 },
         rules
     }))
     .pipe(g.eslint.format());
