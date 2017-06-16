@@ -13,7 +13,7 @@
 @import 'fonts.less';
 
 /* Base styles */
-html, body { font-family:'Open-Sans'; font-size:16px; width:100%; height:100%; margin:0; padding:0; background:#fff; }
+html, body { background:#fff; font-family:'Open-Sans'; font-size:16px; height:100%; margin:0; padding:0; width:100%; }
 pre, code { font-family:'SourceCodePro'; }
 code { background-color:#ccccff; color:#333366; }
 a { color:#660099;
@@ -24,9 +24,9 @@ a { color:#660099;
 .bar { background:#eee; }
 
 /* Header */
-.env-badge { position:fixed; width:200px; margin-left:-100px; left:50%; z-index:1000; box-shadow:0 1px 4px 0 rgba(0, 0, 0, 0.5); text-align:center; opacity:0.5; background-color: @yellow;
-  &.local { background-color: @purple; }
-  &.develop { background-color: @blue; }
+.env-badge { background-color:@yellow; box-shadow:0 1px 4px 0 rgba(0, 0, 0, 0.5); left:50%; margin-left:-100px; opacity:0.5; position:fixed; text-align:center; width:200px; z-index:1000;
+  &.local { background-color:@purple; }
+  &.develop { background-color:@blue; }
 
   span { color:#fff; text-transform:uppercase; }
 }
@@ -41,15 +41,15 @@ header {
     background:radial-gradient(ellipse at center,@purple-light 0,@purple-dark 100%);
 }
 .banner { height:12em; }
-h1 { font-family:'Gotham-Light'; font-size:4em; font-weight:normal; text-align:right; color:#eee; margin:0; padding:0.2em; display:block; position:absolute; bottom:0; right:0;
+h1 { bottom:0; color:#eee; display:block; font-family:'Gotham-Light'; font-size:4em; font-weight:normal; margin:0; padding:0.2em; position:absolute; right:0; text-align:right;
     span { color:@purple-dark; font-size:1em; }
 }
 main h1 { display: none; }
-h2 { margin:1em 0 0.5em; padding-bottom:0.5em; border-bottom:1px solid #eee; }
-h5 { font-family:'Gotham-Light'; font-size:1em; font-weight:normal; text-align:right; color:#eee; margin:0; padding:1em; display:block; position:absolute; bottom:0; right:0; }
+h2 { border-bottom:1px solid #eee; margin:1em 0 0.5em; padding-bottom:0.5em; }
+h5 { bottom:0; color:#eee; display:block; font-family:'Gotham-Light'; font-size:1em; font-weight:normal; margin:0; padding:1em; position:absolute; right:0; text-align:right; }
 
 /* Buttons */
-.buttons { text-align:center; margin:0; padding:10px 0 3px;
+.buttons { margin:0; padding:10px 0 3px; text-align:center;
     li { margin:0.5em; }
 }
 .bar { box-shadow:0 1px 5px #ccc; }
@@ -65,10 +65,8 @@ h5 { font-family:'Gotham-Light'; font-size:1em; font-weight:normal; text-align:r
             &:focus { background:none; text-decoration:underline; }
         }
         &.active {
-            > a,
-            > a:hover,
-            > a:focus { background:none; color:#660099; font-weight:bold; }
-            > a:before { font-family:FontAwesome; content:'\f054'; font-size:0.8em; position:absolute; line-height:2em; left:-0.5em; }
+            > a:hover, > a:focus, > a { background:none; color:#660099; font-weight:bold; }
+            > a:before { content:'\f054'; font-family:'FontAwesome'; font-size:0.8em; left:-0.5em; line-height:2em; position:absolute; }
         }
     }
 }
@@ -76,23 +74,23 @@ h5 { font-family:'Gotham-Light'; font-size:1em; font-weight:normal; text-align:r
 /* Body */
 body {
     &.error { background:@purple-light;
+            background:-moz-radial-gradient(ellipse at center, @purple-light 0, @purple-dark 100%);
+            background:-ms-radial-gradient(ellipse at center, @purple-light 0, @purple-dark 100%);
+            background:-o-radial-gradient(ellipse at center, @purple-light 0, @purple-dark 100%);
             background:-webkit-gradient(radial, center center, 0px, center center, 100%, from(@purple-light), to(@purple-dark));
-            background:-webkit-radial-gradient(ellipse at center,@purple-light 0,@purple-dark 100%);
-            background:-moz-radial-gradient(ellipse at center,@purple-light 0,@purple-dark 100%);
-            background:-o-radial-gradient(ellipse at center,@purple-light 0,@purple-dark 100%);
-            background:-ms-radial-gradient(ellipse at center,@purple-light 0,@purple-dark 100%);
-            background:radial-gradient(ellipse at center,@purple-light 0,@purple-dark 100%);
-        p { font-family:Gotham-Light; color:#fff; margin-left:auto; margin-right:auto; text-align:center;
-            a { font-family:Gotham-Light; color:#ccc; }
+            background:-webkit-radial-gradient(ellipse at center, @purple-light 0, @purple-dark 100%);
+            background:radial-gradient(ellipse at center, @purple-light 0, @purple-dark 100%);
+        p { color:#fff; font-family:Gotham-Light; margin-left:auto; margin-right:auto; text-align:center;
+            a { color:#ccc; font-family:Gotham-Light; }
         }
     }
 }
 
 /* Main */
-.main { padding-top:2em; padding-bottom:3em; }
+.main { padding-bottom:3em; padding-top:2em; }
 ul.buttons > li { padding:0; }
 
 /* Footer */
-footer { font-size:0.75em; margin:3em; color:#333;
+footer { color:#333; font-size:0.75em; margin:3em;
     ul { text-align:center; }
 }
