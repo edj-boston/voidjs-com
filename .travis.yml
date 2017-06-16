@@ -1,8 +1,8 @@
 sudo: false
 language: node_js
 node_js:
-- '5'
-- '4'
+- 'node'
+- '6'
 env:
   global:
   - secure: HAD8/BquRmsmcWYu4whHSyNo0mRfpVmuaqkR2m2ymXxJWvkIcs48/tqau54QBjfTP2WRD5s3QjpYtx2g3lIYAXUS7lpSr49kv7ZLy8+bzWH9+/l6faWZcxeC1pcxoHbdavnkmLqdbAkZaOOXM+qD0OYZAlHWcClmR8zjoaEMemY=
@@ -14,10 +14,10 @@ deploy:
   skip_cleanup: true
   on:
     branch: master
-    node_js: '4'
+    node_js: '6'
 - provider: script
   script: gulp deploy -b stage-voidjs-com
   skip_cleanup: true
   on:
     branch: develop
-    node_js: '4'
+    node_js: '6'
