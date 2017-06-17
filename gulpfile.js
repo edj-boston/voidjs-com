@@ -65,10 +65,9 @@ gulp.task('scripts', () => {
         .pipe(g.babel({
             presets  : [ 'es2015' ],
             comments : true,
-            compact  : false
+            minified : true
         }))
         .pipe(g.concat('all.min.js'))
-        .pipe(g.uglify({ preserveComments : 'some' }))
         .pipe(g.sourcemaps.write('.'))
         .pipe(gulp.dest('build/js'));
 });
