@@ -12,7 +12,7 @@ const argv   = require('yargs').argv,
     marked   = require('marked'),
     moment   = require('moment'),
     path     = require('path'),
-    rules    = require('edj-eslint-rules');
+    rules    = require('@edjboston/eslint-rules');
 
 
 // Configure handlebars
