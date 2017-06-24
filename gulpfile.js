@@ -1,17 +1,18 @@
 'use strict';
 
-const argv  = require('yargs').argv,
-    del     = require('del'),
-    express = require('express'),
-    fs      = require('fs'),
-    g       = require('gulp-load-plugins')(),
-    gulp    = require('gulp'),
-    hb      = require('handlebars'),
-    layouts = require('handlebars-layouts'),
-    marked  = require('marked'),
-    moment  = require('moment'),
-    path    = require('path'),
-    rules   = require('edj-eslint-rules');
+const argv   = require('yargs').argv,
+    del      = require('del'),
+    depcheck = require('depcheck'),
+    express  = require('express'),
+    fs       = require('fs'),
+    g        = require('gulp-load-plugins')(),
+    gulp     = require('gulp'),
+    hb       = require('handlebars'),
+    layouts  = require('handlebars-layouts'),
+    marked   = require('marked'),
+    moment   = require('moment'),
+    path     = require('path'),
+    rules    = require('edj-eslint-rules');
 
 
 // Configure handlebars
@@ -193,7 +194,7 @@ gulp.task('serve', done => {
 
 
 // Check deps with David service
-gulp.task('deps', () => {
+gulp.task('david', () => {
     return gulp.src('package.json')
         .pipe(g.david());
 });
@@ -243,18 +244,20 @@ gulp.task('deploy', () => {
 
 
 // Examine package.json for unused deps (except for frontend and gulp)
-gulp.task('package', g.depcheck({
+gulp.task('depcheck', g.depcheck({
     ignoreMatches : [
         'babel-preset-es2015',
         'bootstrap',
         'connect-fonts-sourcecodepro',
         'font-awesome',
-        'gulp-*',
-        'mocha',
         'jquery',
         'npm-font-open-sans',
-        'should',
         'void'
+    ],
+    specials : [
+        depcheck.special['gulp-load-plugins'],
+        depcheck.special.mocha,
+        depcheck.special.babel
     ]
 }));
 
@@ -262,8 +265,8 @@ gulp.task('package', g.depcheck({
 // What to do when you run `$ gulp`
 gulp.task('default', done => {
     g.sequence(
-        'deps',
-        'package',
+        'david',
+        'depcheck',
         'build',
         'watch',
         'serve'
